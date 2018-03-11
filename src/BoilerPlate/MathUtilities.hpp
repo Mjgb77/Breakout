@@ -49,4 +49,4 @@ public:
 	}
 };
 
-#endif /* MATHUTILITIES_H_ */
+#endif /* MATHUTILITIES_HPP_ */
