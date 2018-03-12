@@ -1,4 +1,4 @@
 ﻿  Matrix4.cpp
-  BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
-          1 file(s) copied.
-          1 file(s) copied.
+c:\breakout\src\boilerplate\matrix4.cpp(109): warning C4101: 'angle': unreferenced local variable
+c:\breakout\src\boilerplate\matrix4.cpp(87): warning C4700: uninitialized local variable 'determinant' used
+c:\breakout\src\boilerplate\matrix4.cpp(129): error C4716: 'Matrix4::GetAngle': must return a value
