@@ -9,7 +9,7 @@
 
 struct Matrix4
 {
-	std::vector <float> MATRIX;
+	std::vector <float> MATRIX; 
 
 	Matrix4();
 	~Matrix4();
