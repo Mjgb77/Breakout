@@ -1,5 +1,18 @@
-﻿  App.cpp
-c:\breakout\src\boilerplate\app.cpp(252): warning C4065: switch statement contains 'default' but no 'case' labels
+﻿  Vector4.cpp
+  Vector3.cpp
+  Vector2.cpp
+  TimeManager.cpp
+  Shader.cpp
+  SDLEvent.cpp
+  Renderer.cpp
+  OpenGLRenderer.cpp
+  Matrix4.cpp
+c:\breakout\src\boilerplate\matrix4.cpp(156): warning C4101: 'angle': unreferenced local variable
+  MathUtilities.cpp
+  main.cpp
+  App.cpp
+c:\breakout\src\boilerplate\app.cpp(289): warning C4065: switch statement contains 'default' but no 'case' labels
+  Generating Code...
   BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
           1 file(s) copied.
           1 file(s) copied.
