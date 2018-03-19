@@ -12,7 +12,8 @@
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="shaderUtilities.cpp" />
+    <ClCompile Include="textureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -25,8 +26,9 @@
     <ClInclude Include="Matrix4.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="OpenGLRenderer.hpp" />
-    <ClInclude Include="Shader.hpp" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="shaderUtilities.hpp" />
+    <ClInclude Include="textureManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -42,13 +44,9 @@
   <ItemGroup>
     <None Include="frag.glsl" />
     <None Include="vertex.glsl" />
-    <None Include="SimpleFragmentShader.FragmentShader" />
-    <None Include="SimpleVertexShader.VertexShader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
-    <Image Include="..\..\..\Users\Jorge\Downloads\test.png" />
-    <Image Include="face.png" />
     <Image Include="test.png" />
   </ItemGroup>
 </Project>

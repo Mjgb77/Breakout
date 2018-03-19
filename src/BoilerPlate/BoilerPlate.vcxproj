@@ -178,7 +178,8 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="shaderUtilities.cpp" />
+    <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
@@ -191,8 +192,9 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="OpenGLRenderer.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
-    <ClInclude Include="Shader.hpp" />
+    <ClInclude Include="shaderUtilities.hpp" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="textureManager.hpp" />
     <ClInclude Include="TimeManager.hpp" />
     <ClInclude Include="Vector2.hpp" />
     <ClInclude Include="Vector3.hpp" />
@@ -200,14 +202,10 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
   </ItemGroup>
   <ItemGroup>
     <None Include="frag.glsl" />
-    <None Include="SimpleFragmentShader.FragmentShader" />
-    <None Include="SimpleVertexShader.VertexShader" />
     <None Include="vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
-    <Image Include="..\..\..\Users\Jorge\Downloads\test.png" />
-    <Image Include="face.png" />
     <Image Include="test.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
