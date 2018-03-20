@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MATHUTILITIES_HPP_
 #define MATHUTILITIES_HPP_
 

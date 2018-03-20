@@ -8,7 +8,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
-
+#include "errorManager.hpp"
 class ShaderUtilities {
 
 public:

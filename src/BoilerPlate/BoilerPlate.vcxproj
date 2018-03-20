@@ -172,10 +172,10 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="errorManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtilities.cpp" />
     <ClCompile Include="Matrix4.cpp" />
-    <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
     <ClCompile Include="shaderUtilities.cpp" />
@@ -187,9 +187,9 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
+    <ClInclude Include="errorManager.hpp" />
     <ClInclude Include="MathUtilities.hpp" />
     <ClInclude Include="Matrix4.hpp" />
-    <ClInclude Include="OpenGLRenderer.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
     <ClInclude Include="shaderUtilities.hpp" />
@@ -201,12 +201,12 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="frag.glsl" />
-    <None Include="vertex.glsl" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
     <Image Include="test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="frag.glsl" />
+    <None Include="vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

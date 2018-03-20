@@ -11,9 +11,9 @@
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="shaderUtilities.cpp" />
     <ClCompile Include="textureManager.cpp" />
+    <ClCompile Include="errorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -25,10 +25,10 @@
     <ClInclude Include="Vector4.hpp" />
     <ClInclude Include="Matrix4.hpp" />
     <ClInclude Include="Renderer.hpp" />
-    <ClInclude Include="OpenGLRenderer.hpp" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="shaderUtilities.hpp" />
     <ClInclude Include="textureManager.hpp" />
+    <ClInclude Include="errorManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -42,11 +42,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="frag.glsl" />
-    <None Include="vertex.glsl" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
     <Image Include="test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="frag.glsl" />
+    <None Include="vertex.glsl" />
   </ItemGroup>
 </Project>

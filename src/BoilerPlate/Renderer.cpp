@@ -1,17 +1,35 @@
 #include "Renderer.hpp"
 
-Renderer::Renderer() {
-	ProgramID = ShaderUtilities::LoadShaders("vertex.glsl", "frag.glsl");
 
+const int FIRST_ATTRIBUTE_SLOT = 0;
+const int SECOND_ATTRIBUTE_SLOT = 1;
+const int THIRD_ATTRIBUTE_SLOT = 2;
+const int STRIDE=6;
+
+
+Renderer::Renderer() {
+	wireFrame = false;
 }
 
 Renderer::~Renderer() {
 	glDeleteBuffers(1, &VertexBufferObject);
-	glDeleteBuffers(1, &VertexArrayObject);
-	glDeleteProgram(ProgramID);
+	glDeleteBuffers(1, &ElementBufferObject);
+	glDeleteVertexArrays(1, &VertexArrayObject);
+
 }
 
-void Renderer::Init(float vertexes[]) {
+void Renderer::SwitchView() {
+	if (wireFrame) wireFrame = false;
+	else {
+		wireFrame = true;
+	}
+}
+
+
+
+void Renderer::InitVertex() {
+	ProgramID = ShaderUtilities::LoadShaders("vertex.glsl", "frag.glsl");
+
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
 
@@ -22,35 +40,38 @@ void Renderer::Init(float vertexes[]) {
 
 
 	//ATTRIBUTES ARE 3: POSITION , COLOR, COORDINATES
-	//change numbers to const, ex : 0 = firstAttribSlot
 	glVertexAttribPointer(
-		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+		FIRST_ATTRIBUTE_SLOT,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
 		3,                  // size
 		GL_FLOAT,           // type
 		GL_FALSE,           // normalized?
-		6 * sizeof(float),  // stride
+		STRIDE * sizeof(float),  // stride
 		(void*)0            // array buffer offset
 	);
-	glVertexAttribPointer(1, 2, GL_FLAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-	glVertexAttribPointer(2, 2, GL_FLAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(SECOND_ATTRIBUTE_SLOT, 2, GL_FLAT, GL_FALSE, STRIDE * sizeof(float), (void*)0);
+	glVertexAttribPointer(THIRD_ATTRIBUTE_SLOT, 2, GL_FLAT, GL_FALSE, STRIDE * sizeof(float), (void*)0);
 
 
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
-	// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
+
+
+	glEnableVertexAttribArray(FIRST_ATTRIBUTE_SLOT);
+	glEnableVertexAttribArray(SECOND_ATTRIBUTE_SLOT);
+	glEnableVertexAttribArray(THIRD_ATTRIBUTE_SLOT);
+
+
+
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 	glBindVertexArray(0);
 
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	if(!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else if (wireFrame) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
 }
 
-void Renderer::onRender() {
+void Renderer::OnRender() {
 	glUseProgram(ProgramID);
 	glBindVertexArray(VertexArrayObject);
-
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

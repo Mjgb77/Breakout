@@ -7,17 +7,25 @@
 
 struct Renderer {
 	//members
-	GLuint VertexArrayObject; //VAO      // opengl-tutorial.org
+	GLuint VertexArrayObject; //VAO
 	GLuint VertexBufferObject; //VBO
 	GLuint ElementBufferObject; //EBO
 	GLuint ProgramID;
-	void Init(float vertexes[]);
-	void onRender();
 
-	//functions
+
+
+	GLushort indexes[3];
+	GLuint indexBufferID;
+	float vertexes[9] = { 0.5,0.5,0.0,  0.5,-0.5,0.0 , -0.5,0.5,0.0 };
+
+	bool wireFrame;
+
+	//functions 
+	void InitVertex();
+	void OnRender();
 	Renderer();
 	~Renderer();
-
+	void SwitchView();
 
 
 

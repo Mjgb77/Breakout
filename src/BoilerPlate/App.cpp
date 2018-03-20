@@ -13,9 +13,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
-
-//#define STB_IMAGE_IMPLEMENTATION
-//#include "stb_image.h"
+#include "Renderer.hpp"
 
 namespace Engine
 {
@@ -32,6 +30,7 @@ namespace Engine
 	{
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
+		glRender = Renderer();
 	}
 
 	App::~App()
@@ -46,12 +45,11 @@ namespace Engine
 			std::cerr << "Game INIT was not successful." << std::endl;
 			return;
 		}
-
+		
+		glRender.InitVertex();
 		m_state = GameState::RUNNING;
 
-		//mover de aqui a renderer
-		//ProgramID = LoadShaders("vertex.glsl", "frag.glsl");
-
+		
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
 	
@@ -98,6 +96,10 @@ namespace Engine
 	{		
 		switch (keyBoardEvent.keysym.scancode)
 		{
+		case SDL_SCANCODE_D:
+			debuggingMode = true;
+			break;
+
 		default:			
 			SDL_Log("%S was pressed.", keyBoardEvent.keysym.scancode);
 			break;
@@ -108,6 +110,10 @@ namespace Engine
 	{
 		switch (keyBoardEvent.keysym.scancode)
 		{
+		case SDL_SCANCODE_D:
+			debuggingMode = false;
+			break;
+
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
 			break;
@@ -146,8 +152,9 @@ namespace Engine
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
+		//if(debuggingMode) glPolygonMode(glRender.VertexArrayObject,GL_FILL);
+		glRender.OnRender();
 		
-		//glDrawArrays(GL_POLYGON,0,6);
 
 
 		SDL_GL_SwapWindow(m_mainWindow);

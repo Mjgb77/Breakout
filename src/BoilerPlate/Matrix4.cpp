@@ -209,15 +209,25 @@ Matrix4 Matrix4::operator-(const Matrix4& rhs) const
 
 Matrix4 Matrix4::operator*(const Matrix4& rhs) const
 {
-	Matrix4 mat = *this;
-	for (int i = 0; i < MATRIX_SIZE; i++) {
-		for (int j = 0; i < MATRIX_SIZE; i++) {
-			for (int k = 0; k < MATRIX_SIZE; k++) {
-				mat.MATRIX[i + 4 * k] *= rhs.GetValue(k, j);
-			}
-		}
-	}
-	return *this;
+
+	Matrix4 returnMatrix = *this;
+	returnMatrix.MATRIX[0] = returnMatrix.MATRIX[0] * rhs.MATRIX[0] + returnMatrix.MATRIX[1] * rhs.MATRIX[4] + returnMatrix.MATRIX[2] * rhs.MATRIX[8] + returnMatrix.MATRIX[3] * rhs.MATRIX[12];
+	returnMatrix.MATRIX[1] = returnMatrix.MATRIX[0] * rhs.MATRIX[1] + returnMatrix.MATRIX[1] * rhs.MATRIX[5] + returnMatrix.MATRIX[2] * rhs.MATRIX[9] + returnMatrix.MATRIX[3] * rhs.MATRIX[13];
+	returnMatrix.MATRIX[2] = returnMatrix.MATRIX[0] * rhs.MATRIX[2] + returnMatrix.MATRIX[1] * rhs.MATRIX[6] + returnMatrix.MATRIX[2] * rhs.MATRIX[10] + returnMatrix.MATRIX[3] * rhs.MATRIX[14];
+	returnMatrix.MATRIX[3] = returnMatrix.MATRIX[0] * rhs.MATRIX[3] + returnMatrix.MATRIX[1] * rhs.MATRIX[7] + returnMatrix.MATRIX[2] * rhs.MATRIX[11] + returnMatrix.MATRIX[3] * rhs.MATRIX[15];
+	returnMatrix.MATRIX[4] = returnMatrix.MATRIX[4] * rhs.MATRIX[0] + returnMatrix.MATRIX[5] * rhs.MATRIX[4] + returnMatrix.MATRIX[6] * rhs.MATRIX[8] + returnMatrix.MATRIX[7] * rhs.MATRIX[12];
+	returnMatrix.MATRIX[5] = returnMatrix.MATRIX[4] * rhs.MATRIX[1] + returnMatrix.MATRIX[5] * rhs.MATRIX[5] + returnMatrix.MATRIX[6] * rhs.MATRIX[9] + returnMatrix.MATRIX[7] * rhs.MATRIX[13];
+	returnMatrix.MATRIX[6] = returnMatrix.MATRIX[4] * rhs.MATRIX[2] + returnMatrix.MATRIX[5] * rhs.MATRIX[6] + returnMatrix.MATRIX[6] * rhs.MATRIX[10] + returnMatrix.MATRIX[7] * rhs.MATRIX[14];
+	returnMatrix.MATRIX[7] = returnMatrix.MATRIX[4] * rhs.MATRIX[3] + returnMatrix.MATRIX[5] * rhs.MATRIX[7] + returnMatrix.MATRIX[6] * rhs.MATRIX[11] + returnMatrix.MATRIX[7] * rhs.MATRIX[15];
+	returnMatrix.MATRIX[8] = returnMatrix.MATRIX[8] * rhs.MATRIX[0] + returnMatrix.MATRIX[9] * rhs.MATRIX[4] + returnMatrix.MATRIX[10] * rhs.MATRIX[8] + returnMatrix.MATRIX[11] * rhs.MATRIX[12];
+	returnMatrix.MATRIX[9] = returnMatrix.MATRIX[8] * rhs.MATRIX[1] + returnMatrix.MATRIX[9] * rhs.MATRIX[5] + returnMatrix.MATRIX[10] * rhs.MATRIX[9] + returnMatrix.MATRIX[11] * rhs.MATRIX[13];
+	returnMatrix.MATRIX[10] = returnMatrix.MATRIX[8] * rhs.MATRIX[2] + returnMatrix.MATRIX[9] * rhs.MATRIX[6] + returnMatrix.MATRIX[10] * rhs.MATRIX[10] + returnMatrix.MATRIX[11] * rhs.MATRIX[14];
+	returnMatrix.MATRIX[11] = returnMatrix.MATRIX[8] * rhs.MATRIX[3] + returnMatrix.MATRIX[9] * rhs.MATRIX[7] + returnMatrix.MATRIX[10] * rhs.MATRIX[11] + returnMatrix.MATRIX[11] * rhs.MATRIX[15];
+	returnMatrix.MATRIX[12] = returnMatrix.MATRIX[12] * rhs.MATRIX[0] + returnMatrix.MATRIX[13] * rhs.MATRIX[4] + returnMatrix.MATRIX[14] * rhs.MATRIX[8] + returnMatrix.MATRIX[15] * rhs.MATRIX[12];
+	returnMatrix.MATRIX[13] = returnMatrix.MATRIX[12] * rhs.MATRIX[1] + returnMatrix.MATRIX[13] * rhs.MATRIX[5] + returnMatrix.MATRIX[14] * rhs.MATRIX[9] + returnMatrix.MATRIX[15] * rhs.MATRIX[13];
+	returnMatrix.MATRIX[14] = returnMatrix.MATRIX[12] * rhs.MATRIX[2] + returnMatrix.MATRIX[13] * rhs.MATRIX[6] + returnMatrix.MATRIX[14] * rhs.MATRIX[10] + returnMatrix.MATRIX[15] * rhs.MATRIX[14];
+	returnMatrix.MATRIX[15] = returnMatrix.MATRIX[12] * rhs.MATRIX[3] + returnMatrix.MATRIX[13] * rhs.MATRIX[7] + returnMatrix.MATRIX[14] * rhs.MATRIX[11] + returnMatrix.MATRIX[15] * rhs.MATRIX[15];
+	return returnMatrix;
 }
 
 Matrix4 Matrix4::operator/(const Matrix4& rhs) const

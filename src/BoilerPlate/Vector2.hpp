@@ -1,3 +1,4 @@
+#pragma once
 #ifndef VECTOR2_HPP_
 #define VECTOR2_HPP_
 

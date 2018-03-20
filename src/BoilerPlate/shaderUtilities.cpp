@@ -5,7 +5,7 @@ GLuint ShaderUtilities::LoadShaders(const char * vertex_file_path, const char * 
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-
+	ErrorManager loadingErrors;
 	// Read the Vertex Shader code from the file
 	std::string VertexShaderCode;
 	std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
@@ -16,7 +16,8 @@ GLuint ShaderUtilities::LoadShaders(const char * vertex_file_path, const char * 
 		VertexShaderStream.close();
 	}
 	else {
-		printf("Impossible to open %s. Are you in the right directory ? Don't forget to read the FAQ !\n", vertex_file_path);
+		printf("Impossible to open %s Are you in the right directory ? Don't forget to read the FAQ !\n", vertex_file_path);
+		loadingErrors.throwError(vertex_file_path, "impossible to open file", "App.cpp  line 51");
 		getchar();
 		return 0;
 	}
@@ -42,12 +43,14 @@ GLuint ShaderUtilities::LoadShaders(const char * vertex_file_path, const char * 
 	glCompileShader(VertexShaderID);
 
 	// Check Vertex Shader
+	
 	glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &Result);
 	glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	if (InfoLogLength > 0) {
 		std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
 		glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
 		printf("%s\n", &VertexShaderErrorMessage[0]);
+		loadingErrors.throwError("vertex.glsl", " unable to compile file", "App.cpp  line 51");
 	}
 
 
@@ -65,6 +68,7 @@ GLuint ShaderUtilities::LoadShaders(const char * vertex_file_path, const char * 
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength + 1);
 		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
 		printf("%s\n", &FragmentShaderErrorMessage[0]);
+		loadingErrors.throwError(" frag.glsl", " unable to compile file", " App.cpp line 51");
 	}
 
 
@@ -83,6 +87,7 @@ GLuint ShaderUtilities::LoadShaders(const char * vertex_file_path, const char * 
 		std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
 		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		printf("%s\n", &ProgramErrorMessage[0]);
+		loadingErrors.throwError("", "ERROR LINKING PROGRAM", "App.cpp line 51");
 	}
 
 
