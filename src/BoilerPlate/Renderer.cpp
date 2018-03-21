@@ -12,9 +12,9 @@ Renderer::Renderer() {
 }
 
 Renderer::~Renderer() {
-	glDeleteBuffers(1, &VertexBufferObject);
-	glDeleteBuffers(1, &ElementBufferObject);
-	glDeleteVertexArrays(1, &VertexArrayObject);
+	//glDeleteBuffers(1, &VertexBufferObject);
+	//glDeleteBuffers(1, &ElementBufferObject);
+	//glDeleteVertexArrays(1, &VertexArrayObject);
 
 }
 
