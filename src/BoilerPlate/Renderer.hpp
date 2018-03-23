@@ -3,7 +3,8 @@
 #define RENDERER_H_INCLUDED
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
-#include "shaderUtilities.hpp"
+#include "shader_utilities.hpp"
+
 
 struct Renderer {
 	//members
@@ -12,20 +13,17 @@ struct Renderer {
 	GLuint ElementBufferObject; //EBO
 	GLuint ProgramID;
 
-
-
-	GLushort indexes[3];
 	GLuint indexBufferID;
 	float vertexes[9] = { 0.5,0.5,0.0,  0.5,-0.5,0.0 , -0.5,0.5,0.0 };
 
 	bool wireFrame;
 
 	//functions 
-	void InitVertex();
-	void OnRender();
+	void init_vertex();
+	void on_render();
 	Renderer();
 	~Renderer();
-	void SwitchView();
+	void switch_view();
 
 
 

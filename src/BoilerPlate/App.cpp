@@ -46,7 +46,7 @@ namespace Engine
 			return;
 		}
 		
-		glRender.InitVertex();
+		glRender.init_vertex();
 		m_state = GameState::RUNNING;
 
 		
@@ -97,7 +97,7 @@ namespace Engine
 		switch (keyBoardEvent.keysym.scancode)
 		{
 		case SDL_SCANCODE_D:
-			debuggingMode = true;
+			glRender.switch_view();
 			break;
 
 		default:			
@@ -111,7 +111,6 @@ namespace Engine
 		switch (keyBoardEvent.keysym.scancode)
 		{
 		case SDL_SCANCODE_D:
-			debuggingMode = false;
 			break;
 
 		case SDL_SCANCODE_ESCAPE:
@@ -153,7 +152,7 @@ namespace Engine
 
 
 		//if(debuggingMode) glPolygonMode(glRender.VertexArrayObject,GL_FILL);
-		glRender.OnRender();
+		glRender.on_render();
 		
 
 

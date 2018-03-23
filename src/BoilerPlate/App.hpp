@@ -6,9 +6,8 @@
 #include <string>
 #include <list>
 
-// Asteroids
 #include "SDLEvent.hpp"
-#include "TimeManager.hpp"
+#include "Engine/utilities/TimeManager.hpp"
 #include "Renderer.hpp"
 
 namespace Engine

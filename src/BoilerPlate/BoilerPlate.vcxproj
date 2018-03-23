@@ -172,41 +172,49 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="errorManager.cpp" />
+    <ClCompile Include="Engine\core\Component.cpp" />
+    <ClCompile Include="Engine\core\game_object.cpp" />
+    <ClCompile Include="Engine\core\unique_id.cpp" />
+    <ClCompile Include="error_manager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathUtilities.cpp" />
-    <ClCompile Include="Matrix4.cpp" />
+    <ClCompile Include="Engine\math\math_utilities.cpp" />
+    <ClCompile Include="Engine\math\Matrix4.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
-    <ClCompile Include="shaderUtilities.cpp" />
-    <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="TimeManager.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Vector3.cpp" />
-    <ClCompile Include="Vector4.cpp" />
+    <ClCompile Include="shader_utilities.cpp" />
+    <ClCompile Include="texture_manager.cpp" />
+    <ClCompile Include="Engine\utilities\TimeManager.cpp" />
+    <ClCompile Include="Engine\math\Vector2.cpp" />
+    <ClCompile Include="Engine\math\Vector3.cpp" />
+    <ClCompile Include="Engine\math\Vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
-    <ClInclude Include="errorManager.hpp" />
-    <ClInclude Include="MathUtilities.hpp" />
-    <ClInclude Include="Matrix4.hpp" />
+    <ClInclude Include="Engine\core\Component.hpp" />
+    <ClInclude Include="Engine\core\game_object.hpp" />
+    <ClInclude Include="Engine\core\IRender.hpp" />
+    <ClInclude Include="Engine\core\IUpdate.hpp" />
+    <ClInclude Include="Engine\core\unique_id.hpp" />
+    <ClInclude Include="error_manager.hpp" />
+    <ClInclude Include="Engine\math\math_utilities.hpp" />
+    <ClInclude Include="Engine\math\Matrix4.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
-    <ClInclude Include="shaderUtilities.hpp" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="textureManager.hpp" />
-    <ClInclude Include="TimeManager.hpp" />
-    <ClInclude Include="Vector2.hpp" />
-    <ClInclude Include="Vector3.hpp" />
-    <ClInclude Include="Vector4.hpp" />
+    <ClInclude Include="shader_utilities.hpp" />
+    <ClInclude Include="Engine\utilities\stb_image.h" />
+    <ClInclude Include="texture_manager.hpp" />
+    <ClInclude Include="Engine\utilities\TimeManager.hpp" />
+    <ClInclude Include="Engine\math\Vector2.hpp" />
+    <ClInclude Include="Engine\math\Vector3.hpp" />
+    <ClInclude Include="Engine\math\Vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
     <Image Include="test.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="frag.glsl" />
-    <None Include="vertex.glsl" />
+    <None Include="Engine\shaders\frag.glsl" />
+    <None Include="Engine\shaders\vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

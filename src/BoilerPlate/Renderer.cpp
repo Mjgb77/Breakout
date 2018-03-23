@@ -18,7 +18,7 @@ Renderer::~Renderer() {
 
 }
 
-void Renderer::SwitchView() {
+void Renderer::switch_view() {
 	if (wireFrame) wireFrame = false;
 	else {
 		wireFrame = true;
@@ -27,8 +27,8 @@ void Renderer::SwitchView() {
 
 
 
-void Renderer::InitVertex() {
-	ProgramID = ShaderUtilities::LoadShaders("vertex.glsl", "frag.glsl");
+void Renderer::init_vertex() {
+	ProgramID = ShaderUtilities::load_shaders("vertex.glsl", "frag.glsl");
 
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
@@ -64,13 +64,14 @@ void Renderer::InitVertex() {
 
 	glBindVertexArray(0);
 
-	if(!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	
+}
+
+void Renderer::on_render() {
+	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else if (wireFrame) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-}
-
-void Renderer::OnRender() {
 	glUseProgram(ProgramID);
 	glBindVertexArray(VertexArrayObject);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
