@@ -24,10 +24,10 @@ namespace Engine
 			
 			// PUBLIC FUNCTIONS
 			
-			void AttachComponent(Component*);
-			void RemoveComponent(Component*);
-			void AddChild(GameObject*);
-			void RemoveChild(GameObject*);
+			void attach_component(Component*);
+			void remove_component(Component*);
+			void add_child(GameObject*);
+			void remove_child(GameObject*);
 			void Update(double deltaTime) override;
 			void Render() override;
 

@@ -175,7 +175,9 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="Engine\core\Component.cpp" />
     <ClCompile Include="Engine\core\game_object.cpp" />
     <ClCompile Include="Engine\core\unique_id.cpp" />
+    <ClCompile Include="Engine\utilities\input_manager.cpp" />
     <ClCompile Include="error_manager.cpp" />
+    <ClCompile Include="Engine\core\ball.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\math\math_utilities.cpp" />
     <ClCompile Include="Engine\math\Matrix4.cpp" />
@@ -195,9 +197,12 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Engine\core\IRender.hpp" />
     <ClInclude Include="Engine\core\IUpdate.hpp" />
     <ClInclude Include="Engine\core\unique_id.hpp" />
+    <ClInclude Include="Engine\utilities\input_manager.hpp" />
     <ClInclude Include="error_manager.hpp" />
     <ClInclude Include="Engine\math\math_utilities.hpp" />
     <ClInclude Include="Engine\math\Matrix4.hpp" />
+    <ClInclude Include="Engine\core\block.hpp" />
+    <ClInclude Include="Game\Game.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
     <ClInclude Include="shader_utilities.hpp" />
@@ -209,8 +214,8 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Engine\math\Vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Users\Jorge\Downloads\face.png" />
-    <Image Include="test.png" />
+    <Image Include="Game\assets\awesomeface.png" />
+    <Image Include="Game\assets\test.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\shaders\frag.glsl" />

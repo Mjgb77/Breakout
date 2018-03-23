@@ -25,13 +25,13 @@ namespace Engine
 			while (!m_children.empty()) delete m_children.back(), m_children.pop_back();
 		}
 
-		void GameObject::AttachComponent(Component* component)
+		void GameObject::attach_component(Component* component)
 		{
 			component->set_owner(this);
 			m_components.push_back(component);
 		}
 
-		void GameObject::RemoveComponent(Component* component)
+		void GameObject::remove_component(Component* component)
 		{
 			m_components.erase(
 				remove(m_components.begin(), m_components.end(), component), m_components.end()
@@ -40,7 +40,7 @@ namespace Engine
 			delete component;
 		}
 
-		void GameObject::AddChild(GameObject* child)
+		void GameObject::add_child(GameObject* child)
 		{
 			// Set the child parent
 			child->m_parent = this;
@@ -49,7 +49,7 @@ namespace Engine
 			m_children.push_back(child);
 		}
 
-		void GameObject::RemoveChild(GameObject* child)
+		void GameObject::remove_child(GameObject* child)
 		{
 			m_children.erase(
 				remove(m_children.begin(), m_children.end(), child), m_children.end()

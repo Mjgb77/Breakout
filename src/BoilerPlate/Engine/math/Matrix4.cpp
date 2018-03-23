@@ -1,4 +1,5 @@
 #include "Matrix4.hpp"
+#include "math_utilities.hpp"
 #include <iostream>
 #define MATRIX_SIZE 4
 
@@ -329,3 +330,60 @@ std::ostream & operator<<(std::ostream & stream, const Matrix4 & matrix)
 		stream << matrix.MATRIX[i] << " " << matrix.MATRIX[i + 4] << " " << matrix.MATRIX[i + 8] << " " << matrix.MATRIX[i + 12] << '\n';
 	return stream;
 }
+
+Matrix4 Matrix4::make_ortho(float pMaximumX, float pMinimumX, float pMaximumY, float pMinimumY, float pMaximumZ, float pMinimumZ) {
+
+
+	this->MATRIX[0] = 2.0f / (pMaximumX - pMinimumX);
+	this->MATRIX[5] = 2.0f / (pMaximumY - pMinimumY);
+	this->MATRIX[10] = -2.0f / (pMaximumZ - pMinimumZ);
+	this->MATRIX[12] = -(pMaximumX + pMinimumX) / (pMaximumX - pMinimumX);
+	this->MATRIX[13] = -(pMaximumY + pMinimumY) / (pMaximumY - pMinimumY);
+	this->MATRIX[14] = -(pMaximumZ + pMinimumZ) / (pMaximumZ - pMinimumZ);
+
+	return *this;
+
+}
+
+Matrix4 Matrix4::make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView) {
+
+	float  factor = 1 / (tan (pSizeOfView * 0.5f * MathUtilities::ToRad(1)));
+	float zDiffFactor = 1 / (pMaximumZ - pMinimumZ);
+	this->MATRIX[0] = factor;
+	this->MATRIX[5] = factor;
+	this->MATRIX[10] = -pMaximumZ * zDiffFactor;
+	this->MATRIX[11] = -1;
+	this->MATRIX[14] = -pMaximumZ * pMinimumZ * zDiffFactor;
+	this->MATRIX[15] = 0;
+
+	return *this;
+
+}
+
+Matrix4 Matrix4::make_look_at(Vector3 pCurrentLook, Vector3 pNewLook) {
+	Vector3 forward(pCurrentLook - pNewLook);
+	Vector3 right;
+	Vector3 up;
+	Vector3 factor(0.0f, 1.0f, 0.0f);
+	forward.Normalize();
+	factor.Normalize();
+	right = (factor * forward);
+	up = forward * right;
+	this->MATRIX[0] = right.x;
+	this->MATRIX[1] = up.x;
+	this->MATRIX[2] = forward.x;
+	this->MATRIX[3] = pCurrentLook.x;
+	this->MATRIX[4] = right.y;
+	this->MATRIX[5] = up.y;
+	this->MATRIX[6] = forward.y;
+	this->MATRIX[7] = pCurrentLook.y;
+	this->MATRIX[8] = right.z;
+	this->MATRIX[9] = up.z;
+	this->MATRIX[10] = forward.z;
+	this->MATRIX[11] = pCurrentLook.z;
+
+
+	return *this;
+}
+
+

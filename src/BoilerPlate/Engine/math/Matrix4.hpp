@@ -28,6 +28,12 @@ struct Matrix4
 	void RotateX(float angle);
 	void RotateY(float angle);
 	void RotateZ(float angle);
+
+	Matrix4 make_ortho(float pMaximumX, float pMinimumX, float pMaximumY, float pMinimumY, float pMaximumZ, float pMinimumZ);
+	Matrix4 make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView);
+	Matrix4 make_look_at(Vector3 pCurrentLook, Vector3 pNewLook);
+
+
 	void Translate(Vector3 translationVector);
 	Vector3 Transform(Vector3 point);
 	Vector4 Transform(Vector4 point);
