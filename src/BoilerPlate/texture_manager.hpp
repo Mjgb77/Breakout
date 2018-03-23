@@ -5,11 +5,11 @@
 
 
 
-		class TextureManager {
+		struct TextureManager {
 			GLuint nTexture;
 
 
-		public:
+			TextureManager();
 			GLuint load_texture(const char * texture_path);
 
 		};

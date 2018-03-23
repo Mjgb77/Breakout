@@ -28,7 +28,7 @@ void Renderer::switch_view() {
 
 
 void Renderer::init_vertex() {
-	ProgramID = ShaderUtilities::load_shaders("vertex.glsl", "frag.glsl");
+	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl","Engine/shaders/frag.glsl");
 
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
@@ -36,7 +36,7 @@ void Renderer::init_vertex() {
 	glBindVertexArray(VertexArrayObject);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(mTemporalVertexes), mTemporalVertexes, GL_STATIC_DRAW);
 
 
 	//ATTRIBUTES ARE 3: POSITION , COLOR, COORDINATES
@@ -48,23 +48,29 @@ void Renderer::init_vertex() {
 		STRIDE * sizeof(float),  // stride
 		(void*)0            // array buffer offset
 	);
-	glVertexAttribPointer(SECOND_ATTRIBUTE_SLOT, 2, GL_FLAT, GL_FALSE, STRIDE * sizeof(float), (void*)0);
-	glVertexAttribPointer(THIRD_ATTRIBUTE_SLOT, 2, GL_FLAT, GL_FALSE, STRIDE * sizeof(float), (void*)0);
 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
+	// color attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
-
-	glEnableVertexAttribArray(FIRST_ATTRIBUTE_SLOT);
-	glEnableVertexAttribArray(SECOND_ATTRIBUTE_SLOT);
-	glEnableVertexAttribArray(THIRD_ATTRIBUTE_SLOT);
-
-
+	// texture coord attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
 
-	
+	glUseProgram(ProgramID);
+
+	glUniform1i(glGetUniformLocation(ProgramID, "texture1"), 0);
+
+	/*float resolution[] = { static_cast<float>(2), static_cast<float>(2) };
+	glUniform2fv(glGetUniformLocation(ProgramID, "resolution"), 1, resolution);
+	*/
 }
 
 void Renderer::on_render() {
@@ -72,7 +78,9 @@ void Renderer::on_render() {
 	else if (wireFrame) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-	glUseProgram(ProgramID);
+	
+
+
 	glBindVertexArray(VertexArrayObject);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 }

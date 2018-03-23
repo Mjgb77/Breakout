@@ -1,5 +1,4 @@
-﻿  Matrix4.cpp
-c:\breakout\src\boilerplate\engine\math\matrix4.cpp(157): warning C4101: 'angle': unreferenced local variable
+﻿  Renderer.cpp
   BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
           1 file(s) copied.
           1 file(s) copied.

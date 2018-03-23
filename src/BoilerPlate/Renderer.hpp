@@ -11,10 +11,22 @@ struct Renderer {
 	GLuint VertexArrayObject; //VAO
 	GLuint VertexBufferObject; //VBO
 	GLuint ElementBufferObject; //EBO
+	GLuint mTextureBall;
+	GLuint mTextureBlock;
 	GLuint ProgramID;
 
+
+
 	GLuint indexBufferID;
-	float vertexes[9] = { 0.5,0.5,0.0,  0.5,-0.5,0.0 , -0.5,0.5,0.0 };
+	float mTemporalVertexes[82] = 
+	{ // positions          // colors           // texture coords
+		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right 0
+		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right 1
+		-0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 0.0f,   0.0f, 1.0f,    // top left  3
+		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right 1
+		-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left 2
+		-0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left  3
+	};
 
 	bool wireFrame;
 

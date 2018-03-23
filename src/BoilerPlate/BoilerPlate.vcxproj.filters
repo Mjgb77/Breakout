@@ -61,5 +61,8 @@
   <ItemGroup>
     <Image Include="Game\assets\test.png" />
     <Image Include="Game\assets\awesomeface.png" />
+    <Image Include="Game\assets\pelota.png" />
+    <Image Include="Game\assets\block.png" />
+    <Image Include="Game\assets\ball.png" />
   </ItemGroup>
 </Project>

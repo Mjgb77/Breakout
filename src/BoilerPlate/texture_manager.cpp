@@ -6,6 +6,10 @@
 #include <iostream>
 
 
+TextureManager::TextureManager() {
+
+}
+
 GLuint TextureManager::load_texture(const char * texture_path) {
 	unsigned int texture;
 	glGenTextures(1, &texture);
@@ -17,7 +21,7 @@ GLuint TextureManager::load_texture(const char * texture_path) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	int width, height, nrChannels;
-
+	stbi_set_flip_vertically_on_load(true);
 	// Load the texture
 	unsigned char *data = stbi_load(texture_path, &width, &height, &nrChannels, 0);
 	if (data)

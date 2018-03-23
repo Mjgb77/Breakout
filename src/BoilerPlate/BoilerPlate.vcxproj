@@ -215,6 +215,9 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
   </ItemGroup>
   <ItemGroup>
     <Image Include="Game\assets\awesomeface.png" />
+    <Image Include="Game\assets\ball.png" />
+    <Image Include="Game\assets\block.png" />
+    <Image Include="Game\assets\pelota.png" />
     <Image Include="Game\assets\test.png" />
   </ItemGroup>
   <ItemGroup>
