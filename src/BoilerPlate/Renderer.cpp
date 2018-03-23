@@ -32,8 +32,11 @@ void Renderer::init_vertex() {
 
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
+	glGenBuffers(1, &indexBufferID);
 
 	glBindVertexArray(VertexArrayObject);
+	glBindVertexArray(indexBufferID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexes), indexes, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(mTemporalVertexes), mTemporalVertexes, GL_STATIC_DRAW);
@@ -82,5 +85,7 @@ void Renderer::on_render() {
 
 
 	glBindVertexArray(VertexArrayObject);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	//glDrawArrays(VertexArrayObject, 0, 6);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
+	glDrawElements(GL_TRIANGLES, sizeof(indexes), GL_UNSIGNED_INT, (void*)0);
 }
