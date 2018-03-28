@@ -8,8 +8,7 @@
 
 #include "SDLEvent.hpp"
 #include "Engine/utilities/TimeManager.hpp"
-#include "Renderer.hpp"
-#include "texture_manager.hpp"
+#include "Game.hpp"
 
 
 namespace Engine
@@ -68,8 +67,7 @@ namespace Engine
 		SDL_GLContext						m_context;
 		GameState::State					m_state;
 		Engine::TimeManager*				m_timer;
-		Renderer							m_glRender;
-		TextureManager						m_textureManager;
+		Game								GameBreakout;
 	};
 }
 #endif /* GAME_HPP */

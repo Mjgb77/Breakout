@@ -1,4 +1,9 @@
-﻿  Renderer.cpp
-  BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
-          1 file(s) copied.
-          1 file(s) copied.
+﻿  block.cpp
+c:\breakout\src\boilerplate\engine\core\block.cpp(3): error C2653: 'Block': is not a class or namespace name
+c:\breakout\src\boilerplate\engine\core\block.cpp(3): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\breakout\src\boilerplate\engine\core\block.cpp(5): warning C4508: 'Block': function should return a value; 'void' return type assumed
+  ball.cpp
+c:\breakout\src\boilerplate\engine\core\ball.cpp(3): error C2653: 'Ball': is not a class or namespace name
+c:\breakout\src\boilerplate\engine\core\ball.cpp(3): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\breakout\src\boilerplate\engine\core\ball.cpp(5): warning C4508: 'Ball': function should return a value; 'void' return type assumed
+  Generating Code...

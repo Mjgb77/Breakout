@@ -30,8 +30,6 @@ namespace Engine
 	{
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-		m_glRender = Renderer();
-		m_textureManager = TextureManager();
 	}
 
 	App::~App()
@@ -47,10 +45,8 @@ namespace Engine
 			return;
 		}
 		
-		m_glRender.init_vertex();
-		m_glRender.mTextureBall = m_textureManager.load_texture("Game/assets/block.png");
-
-		glUniform1i(glGetUniformLocation(m_glRender.ProgramID, "texture1"), 0);
+		GameBreakout.Game_init();
+		//glUniform1i(glGetUniformLocation(m_glRender.ProgramID, "texture1"), 0);
 
 		m_state = GameState::RUNNING;
 
@@ -102,7 +98,7 @@ namespace Engine
 		switch (keyBoardEvent.keysym.scancode)
 		{
 		case SDL_SCANCODE_D:
-			m_glRender.switch_view();
+			GameBreakout.mGameRender.switch_view();
 			break;
 
 		default:			
@@ -156,12 +152,14 @@ namespace Engine
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		m_glRender.on_render();
-		glActiveTexture(GL_TEXTURE0);
+		GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
+
+
+		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);
 
 		glActiveTexture(GL_TEXTURE1);
-
+*/
 
 		SDL_GL_SwapWindow(m_mainWindow);
 	}
