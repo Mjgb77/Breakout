@@ -1,4 +1,3 @@
-
 #pragma once
 #ifndef BALL_H_INCLUDED
 #define BALL_H_INCLUDED
@@ -8,7 +7,7 @@ namespace Engine {
 	namespace core {
 		class Ball : GameObject {
 		public:
-			Ball();
+			//Ball();
 			Vertex mVertexes[12] ;
 			int indexes;
 		};

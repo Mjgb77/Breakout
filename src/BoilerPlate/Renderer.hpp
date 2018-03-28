@@ -4,6 +4,7 @@
 
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
+#include <vector>
 #include "shader_utilities.hpp"
 #include "Engine\core\vertex.hpp"
 
@@ -22,8 +23,8 @@
 		bool wireFrame;
 
 		//functions 
-		void init_vertex(Vertex vertexes[], int indexes[]);
-		void on_render(int indexes[]);
+		void init_vertex(std::vector<float> vertexes, std::vector <int> indexes);
+		void on_render(std::vector <int> indexes);
 		Renderer();
 		~Renderer();
 		void switch_view();

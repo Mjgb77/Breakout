@@ -30,6 +30,7 @@ namespace Engine
 	{
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
+		GameBreakout = Game();
 	}
 
 	App::~App()
@@ -46,6 +47,7 @@ namespace Engine
 		}
 		
 		GameBreakout.Game_init();
+
 		//glUniform1i(glGetUniformLocation(m_glRender.ProgramID, "texture1"), 0);
 
 		m_state = GameState::RUNNING;

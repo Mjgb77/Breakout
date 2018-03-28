@@ -6,6 +6,7 @@
 #include "Engine\core\ball.hpp"
 #include "Engine\core\block.hpp"
 #include "resource_manager.hpp"
+
 	class Game {
 		
 		TextureManager mGameTextures;
