@@ -1,5 +1,4 @@
-﻿  Renderer.cpp
-x64\Debug\ball.obj : warning LNK4042: object specified more than once; extras ignored
+﻿  vertex_object.cpp
   BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
           1 file(s) copied.
           1 file(s) copied.

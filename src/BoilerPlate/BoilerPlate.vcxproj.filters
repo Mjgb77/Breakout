@@ -4,8 +4,6 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="error_manager.cpp" />
     <ClCompile Include="Engine\math\math_utilities.cpp" />
     <ClCompile Include="Engine\math\Vector2.cpp" />
     <ClCompile Include="Engine\math\Vector3.cpp" />
@@ -15,24 +13,25 @@
     <ClCompile Include="Engine\core\game_object.cpp" />
     <ClCompile Include="Engine\core\Component.cpp" />
     <ClCompile Include="Engine\core\unique_id.cpp" />
-    <ClCompile Include="shader_utilities.cpp" />
     <ClCompile Include="Engine\utilities\input_manager.cpp" />
-    <ClCompile Include="Engine\core\ball.hpp" />
-    <ClCompile Include="resource_manager.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Engine\core\block.cpp" />
-    <ClCompile Include="Engine\core\ball.cpp" />
+    <ClCompile Include="Engine\utilities\resource_manager.cpp" />
+    <ClCompile Include="Engine\utilities\shader_utilities.cpp" />
+    <ClCompile Include="Engine\utilities\error_manager.cpp" />
+    <ClCompile Include="Engine\core\Renderer.cpp" />
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="Engine\utilities\color.cpp" />
+    <ClCompile Include="Engine\core\vertex_object.cpp" />
+    <ClCompile Include="Engine\utilities\palette.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
-    <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="Engine\core\IRender.hpp" />
     <ClInclude Include="Engine\core\IUpdate.hpp" />
     <ClInclude Include="Engine\core\Component.hpp" />
     <ClInclude Include="Engine\core\game_object.hpp" />
     <ClInclude Include="Engine\core\unique_id.hpp" />
-    <ClInclude Include="error_manager.hpp" />
     <ClInclude Include="Engine\math\math_utilities.hpp" />
     <ClInclude Include="Engine\math\Vector2.hpp" />
     <ClInclude Include="Engine\math\Vector3.hpp" />
@@ -40,12 +39,16 @@
     <ClInclude Include="Engine\utilities\TimeManager.hpp" />
     <ClInclude Include="Engine\utilities\stb_image.h" />
     <ClInclude Include="Engine\math\Matrix4.hpp" />
-    <ClInclude Include="shader_utilities.hpp" />
     <ClInclude Include="Engine\utilities\input_manager.hpp" />
-    <ClInclude Include="Engine\core\block.hpp" />
-    <ClInclude Include="resource_manager.hpp" />
     <ClInclude Include="Game.hpp" />
-    <ClInclude Include="Engine\core\vertex.hpp" />
+    <ClInclude Include="Engine\utilities\resource_manager.hpp" />
+    <ClInclude Include="Engine\utilities\shader_utilities.hpp" />
+    <ClInclude Include="Engine\utilities\error_manager.hpp" />
+    <ClInclude Include="Engine\core\Renderer.hpp" />
+    <ClInclude Include="block.hpp" />
+    <ClInclude Include="Engine\utilities\color.hpp" />
+    <ClInclude Include="Engine\core\vertex_object.hpp" />
+    <ClInclude Include="Engine\utilities\palette.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

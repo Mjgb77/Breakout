@@ -4,14 +4,14 @@
 
 namespace Engine {
 	namespace core {
-		class UniqueID {
+		class unique_id {
 		public:
 			int id;
 
 
-			UniqueID();
-			UniqueID(const UniqueID& orig);
-			UniqueID& operator=(const UniqueID& orig);
+			unique_id();
+			unique_id(const unique_id& orig);
+			unique_id& operator=(const unique_id& orig);
 		protected:
 			static int nextID;
 

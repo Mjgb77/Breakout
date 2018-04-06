@@ -4,19 +4,19 @@ namespace Engine
 {
 	namespace core
 	{
-		int UniqueID::nextID = 0;
+		int unique_id::nextID = 0;
 
-		UniqueID::UniqueID()
+		unique_id::unique_id()
 		{
 			id = ++nextID;
 		}
 
-		UniqueID::UniqueID(const UniqueID& orig)
+		unique_id::unique_id(const unique_id& orig)
 		{
 			id = orig.id;
 		}
 
-		UniqueID& UniqueID::operator=(const UniqueID& orig)
+		unique_id& unique_id::operator=(const unique_id& orig)
 		{
 			id = orig.id;
 			return(*this);

@@ -4,50 +4,56 @@
 
 #include <algorithm>
 
-class MathUtilities {
 
-public:
-	static const float PI;
+namespace Engine {
+	namespace Math {
 
-	static int NearestInt (float x);
-	static int NearestEven (float x); //Return the nearest even integer, if there is a tie return the greatest
+		class MathUtilities {
 
-	static int RandInt (int);
-	static float RandFloat(); //Return a random float from 0.0 to 1.0
+		public:
+			static const float PI;
 
-	static float ToDeg (float rad);
-	static float ToRad (float deg);
+			static int NearestInt(float x);
+			static int NearestEven(float x); //Return the nearest even integer, if there is a tie return the greatest
 
-	static float CalculateAngularDistanceInDeg (float startAngle, float endAngle);
-	static float CalculateAngularDistanceInRad (float startAngle, float endAngle);
+			static int RandInt(int);
+			static float RandFloat(); //Return a random float from 0.0 to 1.0
 
-	static bool IsPowerOfTwo (int x);
+			static float ToDeg(float rad);
+			static float ToRad(float deg);
 
-	template <typename T>
-	static T GetMax(T x) { return x; }
+			static float CalculateAngularDistanceInDeg(float startAngle, float endAngle);
+			static float CalculateAngularDistanceInRad(float startAngle, float endAngle);
 
-	template<typename T, typename... Args>
-	static T GetMax(T x, Args... args) {
-		return std::max(x, getMax(args...));
+			static bool IsPowerOfTwo(int x);
+
+			template <typename T>
+			static T GetMax(T x) { return x; }
+
+			template<typename T, typename... Args>
+			static T GetMax(T x, Args... args) {
+				return std::max(x, getMax(args...));
+			}
+
+			template <typename T>
+			static T GetMin(T x) { return x; }
+
+			template<typename T, typename... Args>
+			static T GetMin(T x, Args ... args) {
+				return std::min(x, getMin(args...));
+			}
+
+			template <typename T>
+			static T Clamp(T x, T startValue, T endValue) {
+				return std::min(std::max(startValue, x), endValue);
+			}
+
+			template <typename T>
+			static T Interpolate(T startValue, T endValue, float fraction) {
+				return startValue + static_cast<T>((endValue - startValue)*fraction);
+			}
+		};
 	}
-
-	template <typename T>
-	static T GetMin(T x) { return x; }
-
-	template<typename T, typename... Args>
-	static T GetMin(T x, Args ... args) {
-		return std::min(x, getMin(args...));
-	}
-
-	template <typename T>
-	static T Clamp(T x, T startValue, T endValue) {
-		return std::min(std::max(startValue, x), endValue);
-	}
-
-	template <typename T>
-	static T Interpolate(T startValue, T endValue, float fraction) {
-		return startValue + static_cast<T>((endValue - startValue)*fraction);
-	}
-};
+}
 
 #endif /* MATHUTILITIES_HPP_ */

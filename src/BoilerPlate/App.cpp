@@ -13,7 +13,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
-#include "Renderer.hpp"
+#include "Engine/core/Renderer.hpp"
 
 namespace Engine
 {
@@ -154,8 +154,7 @@ namespace Engine
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
-
+		//GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);

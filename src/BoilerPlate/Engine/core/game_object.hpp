@@ -14,7 +14,7 @@ namespace Engine
 	namespace core
 	{
 		class Component;
-		class GameObject : public IUpdate, public IRender, public UniqueID
+		class GameObject : public IUpdate, public IRender, public unique_id
 		{
 		public:
 			//constructor
