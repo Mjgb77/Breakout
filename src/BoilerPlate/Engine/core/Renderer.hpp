@@ -22,8 +22,8 @@ struct Renderer {
 	bool wireFrame;
 
 	//functions 
-	void init_vertex(std::vector<float> vertexes, std::vector <int> indexes);
-	void on_render(std::vector <int> indexes);
+	void init_vertex(float *, int *);
+	void on_render(int *);
 	Renderer();
 	~Renderer();
 	void switch_view();

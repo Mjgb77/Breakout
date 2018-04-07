@@ -26,14 +26,9 @@ void Renderer::switch_view() {
 }
 
 
+void Renderer::init_vertex(float *vertices, int *indices) {
 
-void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs) {
-	float *vertexes = new float[101 * 8];
-	for (int i = 0; i < 808; i++) vertexes[i] = vertexs[i];
-
-	int indexes[300];
-	for (int i = 0; i < 300; i++) indexes[i] = indexs[i];
-	
+	printf("%d\n", int(sizeof(indices) / sizeof(int)));
 	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl","Engine/shaders/frag.glsl");
 
 	glGenVertexArrays(1, &VertexArrayObject);
@@ -44,11 +39,11 @@ void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs
 	glBindVertexArray(VertexArrayObject);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexes), indexes, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	//
 
 
 	////ATTRIBUTES ARE 3: POSITION , COLOR, COORDINATES
@@ -60,16 +55,16 @@ void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs
 		STRIDE * sizeof(float),  // stride
 		(void*)0            // array buffer offset
 	);
-	
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(7 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 	
 
@@ -85,10 +80,8 @@ void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs
 	
 }
 
-void Renderer::on_render(std::vector <int> indexs) {
+void Renderer::on_render(int *indices) {
 
-	int *indexes = new int[300];
-	for (int i = 0; i < 300; i++) indexes[i] = indexs[i];
 
 	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else if (wireFrame) {
@@ -103,5 +96,5 @@ void Renderer::on_render(std::vector <int> indexs) {
 	glBindTexture(GL_TEXTURE_2D, mTextureBall);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
-	glDrawElements(GL_TRIANGLES,sizeof(indexes), GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(GL_TRIANGLES,sizeof(indices), GL_UNSIGNED_INT, (void*)0);
 }

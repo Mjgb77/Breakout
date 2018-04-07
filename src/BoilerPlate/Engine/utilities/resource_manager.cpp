@@ -6,6 +6,12 @@
 
 #include <iostream>
 
+//Y esa clase el se la dio completa? l esta ?si el nos dio la funcion? la de load texture
+//yy q eeso hace??? cargar la imagen de la bola.///
+
+//pero q el hace por dentro? osea
+//el donde la guarda se guarda en el gluint donde la cargues que
+//como asi?k mmm dejame ver
 
 TextureManager::TextureManager() {
 

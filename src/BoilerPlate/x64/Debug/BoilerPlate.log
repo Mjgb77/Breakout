@@ -1,4 +1,36 @@
 ﻿  vertex_object.cpp
+  Game.cpp
+  Vector4.cpp
+  Vector3.cpp
+  Vector2.cpp
+  TimeManager.cpp
+  resource_manager.cpp
+  shader_utilities.cpp
+  SDLEvent.cpp
+  palette.cpp
+  Renderer.cpp
+  Matrix4.cpp
+  math_utilities.cpp
+  main.cpp
+  error_manager.cpp
+  input_manager.cpp
+  unique_id.cpp
+  game_object.cpp
+  Component.cpp
+  color.cpp
+  Generating Code...
+  Compiling...
+  block.cpp
+c:\breakout\src\boilerplate\block.cpp(17): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%lld' in the format string
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%Id' in the format string
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%I64d' in the format string
+c:\breakout\src\boilerplate\block.cpp(17): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'unsigned __int64'
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%lld' in the format string
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%Id' in the format string
+  c:\breakout\src\boilerplate\block.cpp(17): note: consider using '%I64d' in the format string
+  App.cpp
+  Generating Code...
   BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
           1 file(s) copied.
           1 file(s) copied.
