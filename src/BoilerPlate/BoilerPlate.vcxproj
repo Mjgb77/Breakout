@@ -181,7 +181,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="Engine\utilities\error_manager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\math\math_utilities.cpp" />
-    <ClCompile Include="Engine\math\Matrix4.cpp" />
+    <ClCompile Include="Engine\math\matrix_4.cpp" />
     <ClCompile Include="Engine\core\Renderer.cpp" />
     <ClCompile Include="Engine\utilities\palette.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
@@ -205,7 +205,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Engine\utilities\input_manager.hpp" />
     <ClInclude Include="Engine\utilities\error_manager.hpp" />
     <ClInclude Include="Engine\math\math_utilities.hpp" />
-    <ClInclude Include="Engine\math\Matrix4.hpp" />
+    <ClInclude Include="Engine\math\matrix_4.hpp" />
     <ClInclude Include="block.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Engine\core\Renderer.hpp" />
