@@ -18,9 +18,7 @@ public:
 	//FUNCTIONS &  CTORS
 	Game();
 	void Game_init();
-		
-
-
+	void render();
 };
 
 

@@ -30,7 +30,6 @@ namespace Engine
 	{
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-		GameBreakout = Game();
 	}
 
 	App::~App()
@@ -153,8 +152,7 @@ namespace Engine
 		glClearColor(0.1f, 0.1f, 0.15f, 0.1f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-
-		//GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
+		GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.mIndices);
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);

@@ -22,8 +22,8 @@ struct Renderer {
 	bool wireFrame;
 
 	//functions 
-	void init_vertex(float *, int *);
-	void on_render(int *);
+	void init_vertex(float [], int []);
+	void on_render(int []);
 	Renderer();
 	~Renderer();
 	void switch_view();

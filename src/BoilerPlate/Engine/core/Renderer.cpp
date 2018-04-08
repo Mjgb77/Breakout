@@ -26,10 +26,19 @@ void Renderer::switch_view() {
 }
 
 
-void Renderer::init_vertex(float *vertices, int *indices) {
+void Renderer::init_vertex(float ver[], int ind[]) {
+	int indices[6];
+	for (int i = 0; i < 6; i++) indices[i] = ind[i];
+	float vertices[36];
+	for (int i = 0; i < 36; i++) {
+		vertices[i] = ver[i];
+		std::cout << vertices[i] << std::endl;
+	}
 
-	printf("%d\n", int(sizeof(indices) / sizeof(int)));
 	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl","Engine/shaders/frag.glsl");
+	
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
@@ -40,7 +49,7 @@ void Renderer::init_vertex(float *vertices, int *indices) {
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	//
@@ -56,15 +65,15 @@ void Renderer::init_vertex(float *vertices, int *indices) {
 		(void*)0            // array buffer offset
 	);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// color attribute
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(7 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(7 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 	
 
@@ -80,9 +89,11 @@ void Renderer::init_vertex(float *vertices, int *indices) {
 	
 }
 
-void Renderer::on_render(int *indices) {
-
-
+void Renderer::on_render(int ind[]) {
+	int indices[6];
+	for (int i = 0; i < 6; i++) {
+		indices[i] = ind[i];
+	}
 	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else if (wireFrame) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

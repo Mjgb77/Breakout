@@ -10,7 +10,7 @@ struct TextureManager {
 
 
 	TextureManager();
-	GLuint load_texture(const char * texture_path);
+	GLuint load_texture(const char *, bool);
 
 };
 

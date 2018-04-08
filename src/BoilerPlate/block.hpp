@@ -10,9 +10,9 @@
 class Block: Engine::core::GameObject {
 public:
 	Block(Engine::Math::Vector2);
-	int *mIndices;
+	int mIndices [6];
+	float getVertices [4*9];
 	std::vector <VertexObject> mVertices;
-	float * getVertices;
 };
 
 #endif // !BLOCK_H_INCLUDED
