@@ -150,9 +150,9 @@ namespace Engine
 
 	void App::Render()
 	{
-		glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+		glClearColor(0.1f, 0.1f, 0.15f, 0.1f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
+		
 
 		//GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
 
