@@ -10,7 +10,6 @@ const int STRIDE = 6;
 
 
 Renderer::Renderer() {
-	wireFrame = false;
 }
 
 Renderer::~Renderer() {
@@ -20,17 +19,10 @@ Renderer::~Renderer() {
 
 }
 
-void Renderer::switch_view() {
-	if (wireFrame) wireFrame = false;
-	else {
-		wireFrame = true;
-	}
-}
 
 
 void Renderer::init_vertex(float vertices[], int indices[]) {
-	for (int i = 0; i < 36; i++) std::cout << vertices[i] << " ";
-	puts("");
+
 	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl", "Engine/shaders/frag.glsl");
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -82,40 +74,34 @@ void Renderer::init_vertex(float vertices[], int indices[]) {
 }
 
 using namespace std;
-void Renderer::on_render(int indices[])  {
-	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else if (wireFrame) {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
+void Renderer::on_render(int indices[], float pModelMatrix [], int pIdTexture)  {
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
 	glUseProgram(ProgramID);
 
-	Engine::Math::matrix_4 model = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
 
-
-
-	view.translate({ 0.0f,0.0f,-3.0f });
-	view.rotate_z(0.0f);
-	projection.make_perspective(100.0f, 0.1f, 35.0f);
+	view.translate({ 0.0f,0.0f,-7.0f });
+	//view.rotate_z(0.0f);
+	projection.make_perspective(120.0f, 0.1f, 30.0f);
 
 	//retrieve the matrix uniform locations
 	GLuint modelLoc = glGetUniformLocation(ProgramID, "model");
 	GLuint viewLoc = glGetUniformLocation(ProgramID, "view");
 	GLuint projectionLoc = glGetUniformLocation(ProgramID, "projection");
 
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.get_pointer());
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, pModelMatrix);
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.get_pointer());
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, projection.get_pointer());
 
-	float resolution[] = { static_cast<float>(1136), static_cast<float>(640) };
 
 	glBindVertexArray(VertexArrayObject);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, mTextureBall);
+	glBindTexture(GL_TEXTURE_2D, pIdTexture);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
 	glDrawElements(GL_TRIANGLES, 6 * sizeof(int), GL_UNSIGNED_INT, (void*)0);

@@ -5,6 +5,7 @@
 #include <vector>
 #include "Engine/core/Renderer.hpp"
 #include "block.hpp"
+#include "ball.hpp"
 #include "Engine/utilities/resource_manager.hpp"
 
 class Game {
@@ -13,7 +14,9 @@ class Game {
 
 public:
 	Renderer mGameRender;
+	Renderer mrBall;
 	std::vector <Block> mGameBlocks;
+	ball mBall;
 	//FUNCTIONS &  CTORS
 	Game();
 	void Game_init();

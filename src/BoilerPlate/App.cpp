@@ -98,10 +98,6 @@ namespace Engine
 	{		
 		switch (keyBoardEvent.keysym.scancode)
 		{
-		case SDL_SCANCODE_D:
-			GameBreakout.mGameRender.switch_view();
-			break;
-
 		default:			
 			SDL_Log("%S was pressed.", keyBoardEvent.keysym.scancode);
 			break;

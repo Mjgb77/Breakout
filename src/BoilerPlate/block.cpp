@@ -11,7 +11,7 @@ using namespace std;
 
 Block::Block(Engine::Math::Vector2 pPosition)
 {
-	
+	mModelMatrix.translate(pPosition);
 }
 
 int * Block::get_indices()
