@@ -152,7 +152,7 @@ namespace Engine
 		glClearColor(0.1f, 0.1f, 0.15f, 0.1f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.mIndices);
+		GameBreakout.render();
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);

@@ -184,6 +184,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="Engine\math\matrix_4.cpp" />
     <ClCompile Include="Engine\core\Renderer.cpp" />
     <ClCompile Include="Engine\utilities\palette.cpp" />
+    <ClCompile Include="Engine\components\model_matrix.cpp" />
     <ClCompile Include="SDLEvent.cpp" />
     <ClCompile Include="Engine\utilities\shader_utilities.cpp" />
     <ClCompile Include="Engine\utilities\resource_manager.cpp" />
@@ -193,6 +194,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClCompile Include="Engine\math\Vector4.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Engine\core\vertex_object.cpp" />
+    <ClCompile Include="Engine\components\velocity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -210,6 +212,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Engine\core\Renderer.hpp" />
     <ClInclude Include="Engine\utilities\palette.hpp" />
+    <ClInclude Include="Engine\components\model_matrix.hpp" />
     <ClInclude Include="SDLEvent.hpp" />
     <ClInclude Include="Engine\utilities\shader_utilities.hpp" />
     <ClInclude Include="Engine\utilities\stb_image.h" />
@@ -219,6 +222,7 @@ copy /Y "$(SolutionDir)\Externals\SDL2-2.0.4\lib\x64\SDL2.dll" "$(TargetDir)SDL2
     <ClInclude Include="Engine\math\Vector3.hpp" />
     <ClInclude Include="Engine\math\Vector4.hpp" />
     <ClInclude Include="Engine\core\vertex_object.hpp" />
+    <ClInclude Include="Engine\components\velocity.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Game\assets\awesomeface.png" />

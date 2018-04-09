@@ -18,6 +18,7 @@ namespace Engine {
 			matrix_4();
 			~matrix_4();
 			std::vector <float> Get();
+			float * get_pointer();
 			matrix_4 get_transposed();
 
 			matrix_4 operator+ (const matrix_4& rhs) const;
@@ -37,7 +38,7 @@ namespace Engine {
 			matrix_4 make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView);
 			matrix_4 make_look_at(Vector3 pCurrentLook, Vector3 pNewLook);
 
-
+			void scale(Vector3 pScaleVector);
 			void translate(Vector3 pTranslationVector);
 			Vector3 transform(Vector3 pPoint);
 			Vector4 transform(Vector4 pPoint);

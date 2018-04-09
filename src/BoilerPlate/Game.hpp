@@ -13,7 +13,7 @@ class Game {
 
 public:
 	Renderer mGameRender;
-	Block mGameBlocks;
+	std::vector <Block> mGameBlocks;
 	//FUNCTIONS &  CTORS
 	Game();
 	void Game_init();

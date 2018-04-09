@@ -4,15 +4,16 @@
 
 #include "Engine/core/game_object.hpp"
 #include "Engine/core/vertex_object.hpp"
-
+#include "Engine/components/velocity.hpp"
 #include <vector>
 
 class Block: Engine::core::GameObject {
 public:
 	Block(Engine::Math::Vector2);
-	int mIndices [6];
-	float getVertices [4*9];
-	std::vector <VertexObject> mVertices;
+
+	static int * get_indices();
+	static float * get_vertices();
+
 };
 
 #endif // !BLOCK_H_INCLUDED

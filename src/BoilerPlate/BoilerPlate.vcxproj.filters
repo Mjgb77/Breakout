@@ -23,6 +23,8 @@
     <ClCompile Include="Engine\core\vertex_object.cpp" />
     <ClCompile Include="Engine\utilities\palette.cpp" />
     <ClCompile Include="Engine\math\matrix_4.cpp" />
+    <ClCompile Include="Engine\components\velocity.cpp" />
+    <ClCompile Include="Engine\components\model_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -49,6 +51,8 @@
     <ClInclude Include="Engine\core\vertex_object.hpp" />
     <ClInclude Include="Engine\utilities\palette.hpp" />
     <ClInclude Include="Engine\math\matrix_4.hpp" />
+    <ClInclude Include="Engine\components\velocity.hpp" />
+    <ClInclude Include="Engine\components\model_matrix.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

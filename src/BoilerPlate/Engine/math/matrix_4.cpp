@@ -30,6 +30,11 @@ namespace Engine {
 			return MATRIX;
 		}
 
+		float * matrix_4::get_pointer()
+		{
+			return MATRIX.data();
+		}
+
 		matrix_4 matrix_4::GetInverse() const
 		{
 			float inv[16], det;
@@ -293,6 +298,13 @@ namespace Engine {
 			MRotate.MATRIX[4] = sin(-angle);
 			MRotate.MATRIX[5] = cos(-angle);
 			*this = (*this)*MRotate;
+		}
+
+		void matrix_4::scale(Vector3 pScaleVector)
+		{
+			MATRIX[0] *= pScaleVector.x;
+			MATRIX[5] *= pScaleVector.y;
+			MATRIX[10] *= pScaleVector.z;
 		}
 
 		void matrix_4::translate(Vector3 translationVector)

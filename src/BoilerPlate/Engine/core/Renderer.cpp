@@ -29,7 +29,8 @@ void Renderer::switch_view() {
 
 
 void Renderer::init_vertex(float vertices[], int indices[]) {
-	//aqui llegan son 36 floatsmi
+	for (int i = 0; i < 36; i++) std::cout << vertices[i] << " ";
+	puts("");
 	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl", "Engine/shaders/frag.glsl");
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -80,8 +81,8 @@ void Renderer::init_vertex(float vertices[], int indices[]) {
 	glUniform1i(glGetUniformLocation(ProgramID, "texture1"), 0);
 }
 
-void Renderer::on_render(int indices[]) {
-
+using namespace std;
+void Renderer::on_render(int indices[])  {
 	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else if (wireFrame) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -94,6 +95,8 @@ void Renderer::on_render(int indices[]) {
 	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
 
+
+
 	view.translate({ 0.0f,0.0f,-3.0f });
 	view.rotate_z(0.0f);
 	projection.make_perspective(100.0f, 0.1f, 35.0f);
@@ -103,23 +106,9 @@ void Renderer::on_render(int indices[]) {
 	GLuint viewLoc = glGetUniformLocation(ProgramID, "view");
 	GLuint projectionLoc = glGetUniformLocation(ProgramID, "projection");
 
-
-	float mModel[16];
-	std::vector <float> tmp = model.Get();
-	for (int i = 0; i < 16; i++) mModel[i] = tmp[i];
-	float mView[16];
-	tmp = view.Get();
-	for (int i = 0; i < 16; i++) mView[i] = tmp[i];
-
-	float mProjection[16];
-	tmp = projection.Get();
-	for (int i = 0; i < 16; i++) {
-		mProjection[i] = tmp[i];
-	}
-
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, mModel);
-	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, mView);
-	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, mProjection);
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.get_pointer());
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.get_pointer());
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, projection.get_pointer());
 
 	float resolution[] = { static_cast<float>(1136), static_cast<float>(640) };
 
