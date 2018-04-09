@@ -1,4 +1,5 @@
-﻿  Renderer.cpp
-  BoilerPlate.vcxproj -> C:\MICHAEL-AC\Breakout\src\x64\Debug\BoilerPlate.exe
+﻿  matrix_4.cpp
+c:\breakout\src\boilerplate\engine\math\matrix_4.cpp(352): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  BoilerPlate.vcxproj -> C:\Breakout\src\x64\Debug\BoilerPlate.exe
           1 file(s) copied.
           1 file(s) copied.

@@ -9,13 +9,13 @@ namespace Engine {
 
 		matrix_4::matrix_4()
 		{
-			SetIdentity();
+			set_identity();
 		}
 
 		matrix_4::~matrix_4() {
 		}
 
-		void matrix_4::SetIdentity()
+		void matrix_4::set_identity()
 		{
 			//RESET VALUES (0)
 			MATRIX = std::vector<float>(16, 0.0f);
@@ -180,13 +180,13 @@ namespace Engine {
 			return Vector3(pitch, yaw, roll);
 		}
 
-		float matrix_4::GetValue(int row, int column) const
+		float matrix_4::get_value (int row, int column) const
 		{
 			return MATRIX[column * 4 + row];
 		}
 
 
-		matrix_4 matrix_4::GetTransposed()
+		matrix_4 matrix_4::get_transposed()
 		{
 			matrix_4 transposed;
 			for (int i = 0; i < MATRIX_SIZE; i++) {
@@ -242,7 +242,7 @@ namespace Engine {
 		}
 
 
-		void matrix_4::Rotate(float angle, Vector3 axis)
+		void matrix_4::rotate(float angle, Vector3 axis)
 		{
 			axis.Normalize();
 			float c = cos(angle);
@@ -265,7 +265,7 @@ namespace Engine {
 			*this = (*this)*Rotation;
 		}
 
-		void matrix_4::RotateX(float angle)
+		void matrix_4::rotate_x(float angle)
 		{
 			matrix_4 MRotate;
 			MRotate.MATRIX[5] = cos(-angle);
@@ -275,7 +275,7 @@ namespace Engine {
 			*this = (*this)*MRotate;
 		}
 
-		void matrix_4::RotateY(float angle)
+		void matrix_4::rotate_y(float angle)
 		{
 			matrix_4 MRotate;
 			MRotate.MATRIX[0] = cos(-angle);
@@ -285,7 +285,7 @@ namespace Engine {
 			*this = (*this)*MRotate;
 		}
 
-		void matrix_4::RotateZ(float angle)
+		void matrix_4::rotate_z(float angle)
 		{
 			matrix_4 MRotate;
 			MRotate.MATRIX[0] = cos(-angle);
@@ -295,7 +295,7 @@ namespace Engine {
 			*this = (*this)*MRotate;
 		}
 
-		void matrix_4::Translate(Vector3 translationVector)
+		void matrix_4::translate(Vector3 translationVector)
 		{
 			matrix_4 MTranslation = matrix_4();
 			MTranslation.MATRIX[12] = translationVector.x;
@@ -304,7 +304,7 @@ namespace Engine {
 			(*this) = MTranslation * (*this);
 		}
 
-		Vector3 matrix_4::Transform(Vector3 point)
+		Vector3 matrix_4::transform(Vector3 point)
 		{
 			matrix_4 MPoint = matrix_4();
 			MPoint.MATRIX[12] = point.x;
@@ -316,7 +316,7 @@ namespace Engine {
 		}
 
 
-		Vector4 matrix_4::Transform(Vector4 point)
+		Vector4 matrix_4::transform(Vector4 point)
 		{
 			matrix_4 MPoint = matrix_4();
 			MPoint.MATRIX[12] = point.x;
@@ -349,7 +349,7 @@ namespace Engine {
 		}
 
 		matrix_4 matrix_4::make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView) {
-			float  factor = 1 / (tan( MathUtilities::ToRad(pSizeOfView * 0.5)));
+			float  factor = 1 / (tan( MathUtilities::to_rad(pSizeOfView * 0.5)));
 			float zDiffFactor = 1 / (pMaximumZ - pMinimumZ);
 			MATRIX[0] = factor;
 			MATRIX[5] = factor;

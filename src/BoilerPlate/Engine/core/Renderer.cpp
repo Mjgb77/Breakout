@@ -94,8 +94,8 @@ void Renderer::on_render(int indices[]) {
 	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
 
-	view.Translate({ 0.0f,0.0f,-3.0f });
-	view.RotateZ(0.0f);
+	view.translate({ 0.0f,0.0f,-3.0f });
+	view.rotate_z(0.0f);
 	projection.make_perspective(100.0f, 0.1f, 35.0f);
 
 	//retrieve the matrix uniform locations
