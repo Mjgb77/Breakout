@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #ifndef VERTEX_OBJECT_HPP_
 #define VERTEX_OBJECT_HPP_
@@ -14,6 +14,7 @@ struct VertexObject
 	Engine::Math::Vector2 glCoord;
 
 	VertexObject(Engine::Math::Vector3, Color, Engine::Math::Vector2);
+	void copy_info(float *);
 };
 
 #endif // !VERTEX_OBJECT_HPP_

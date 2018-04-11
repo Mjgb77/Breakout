@@ -9,24 +9,22 @@
 #include "vertex_object.hpp"
 
 
-struct Renderer {
+struct renderer {
 	//members
 	GLuint VertexArrayObject; //VAO
 	GLuint VertexBufferObject; //VBO
 	GLuint ElementBufferObject; //EBO
+
 	GLuint mTextureBall;
 	GLuint mTextureBlock;
 	GLuint ProgramID;
 
 
-	bool wireFrame;
-
 	//functions 
-	void init_vertex(std::vector<float> vertexes, std::vector <int> indexes);
-	void on_render(std::vector <int> indexes);
-	Renderer();
-	~Renderer();
-	void switch_view();
+	void init(float [], int []);
+	void render(int [], float [], int, float);
+	renderer();
+	~renderer();
 };
 
 

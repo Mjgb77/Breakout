@@ -28,9 +28,9 @@ namespace Engine
 		, m_timer(new TimeManager)
 		, m_mainWindow(nullptr)
 	{
+		GameBreakout = new Game(width, height);
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-		GameBreakout = Game();
 	}
 
 	App::~App()
@@ -46,7 +46,7 @@ namespace Engine
 			return;
 		}
 		
-		GameBreakout.Game_init();
+		GameBreakout->Game_init();
 
 		//glUniform1i(glGetUniformLocation(m_glRender.ProgramID, "texture1"), 0);
 
@@ -70,6 +70,8 @@ namespace Engine
 			//
 			Update();
 			Render();
+
+			KeyboardPollEvent();
 		}
 	}
 
@@ -96,43 +98,29 @@ namespace Engine
 	}
 
 	void App::OnKeyDown(SDL_KeyboardEvent keyBoardEvent)
-	{		
-		switch (keyBoardEvent.keysym.scancode)
-		{
-		case SDL_SCANCODE_D:
-			GameBreakout.mGameRender.switch_view();
-			break;
-
-		default:			
-			SDL_Log("%S was pressed.", keyBoardEvent.keysym.scancode);
-			break;
-		}
+	{
+		on_keyboard_down_event(keyBoardEvent.keysym.scancode);
 	}
+
 
 	void App::OnKeyUp(SDL_KeyboardEvent keyBoardEvent)
 	{
 		switch (keyBoardEvent.keysym.scancode)
 		{
-		case SDL_SCANCODE_D:
-			break;
-
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
 			break;
 		default:
-			//DO NOTHING
+			on_keyboard_release_event(keyBoardEvent.keysym.scancode);
 			break;
 		}
 	}
 
 	void App::Update()
 	{
-		double startTime = m_timer->GetElapsedTimeInSeconds();
-
-		// Update code goes here
-		//
-
+		double startTime = m_lastFrameTime;
 		double endTime = m_timer->GetElapsedTimeInSeconds();
+
 		double nextTimeFrame = startTime + DESIRED_FRAME_TIME;
 
 		while (endTime < nextTimeFrame)
@@ -141,20 +129,21 @@ namespace Engine
 			endTime = m_timer->GetElapsedTimeInSeconds();
 		}
 
-		//double elapsedTime = endTime - startTime;        
+		double elapsedTime = endTime - startTime;
+
+		GameBreakout->update(elapsedTime);
 
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-
 		m_nUpdates++;
+
 	}
 
 	void App::Render()
 	{
-		glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+		glClearColor(0.1f, 0.1f, 0.15f, 0.1f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
-
-		//GameBreakout.mGameRender.on_render(GameBreakout.mGameBlocks.indexes);
+		
+		GameBreakout->render();
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);

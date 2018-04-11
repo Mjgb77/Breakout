@@ -23,6 +23,7 @@ namespace Engine
 			// Copy current keys to previous keys.
 			//
 			std::copy(m_currentKeys, m_currentKeys + KEYCOUNT, m_previousKeys);
+
 		}
 
 		void InputManager::Create()
@@ -71,7 +72,7 @@ namespace Engine
 
 		bool InputManager::is_key_pressed(unsigned char key)
 		{
-			return m_currentKeys[key];
+			return m_currentKeys[key] == true && !m_previousKeys[key];
 		}
 
 		void InputManager::key_up(unsigned char key)
@@ -93,13 +94,15 @@ void on_keyboard_down_event(unsigned char key)
 	Engine::Input::InputManager::Instance().key_down(key);
 }
 
-void on_keyboard_realeased_event(unsigned char key)
+void on_keyboard_release_event(unsigned char key)
 {
 	Engine::Input::InputManager::Instance().set_key_pressed(false);
 	Engine::Input::InputManager::Instance().key_up(key);
 }
 
-void keyboard_poll_event()
+void KeyboardPollEvent()
 {
 	Engine::Input::InputManager::Instance().Update();
 }
+
+

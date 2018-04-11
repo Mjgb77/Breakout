@@ -16,13 +16,10 @@ namespace Engine
 			IUpdate() : m_nUpdates(0) {};
 			virtual ~IUpdate() = default;
 
-			void virtual Update(double deltaTime) { m_nUpdates++; }; 
+			void virtual update(double deltaTime) { m_nUpdates++; }; 
 
 		};
-
-
-
-		}
+	}
 }
 
 #endif // !_IUPDATE_HPP_

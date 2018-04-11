@@ -16,45 +16,45 @@ namespace Engine {
 			}
 		}
 
-		int MathUtilities::NearestInt(float x) {
+		int MathUtilities::nearest_int(float x) {
 			return static_cast<int>(round(x));
 		}
 
-		int MathUtilities::NearestEven(float x) {
+		int MathUtilities::nearest_even(float x) {
 			int xLow = static_cast<int>(floor(x)), xUp = static_cast<int>(ceil(x));
 			if (xLow == xUp) return xUp + 1;
 			return xLow & 1 ? xUp : xLow;
 		}
 
-		int MathUtilities::RandInt(int max) {
+		int MathUtilities::rand_int(int max) {
 			RandSeed();
 			return rand() % max;
 		}
 
-		float MathUtilities::RandFloat() {
+		float MathUtilities::rand_float() {
 			RandSeed();
 			return float(rand()) / RAND_MAX;
 		}
 
-		float MathUtilities::ToDeg(float rad) {
+		float MathUtilities::to_deg(float rad) {
 			return rad * 180 / PI;
 		}
 
-		float MathUtilities::ToRad(float deg) {
+		float MathUtilities::to_rad(float deg) {
 			return deg * PI / 180;
 		}
 
-		float MathUtilities::CalculateAngularDistanceInDeg(float startAngle, float endAngle) {
+		float MathUtilities::calculate_angular_distance_in_deg(float startAngle, float endAngle) {
 			float dis = endAngle - startAngle;
 			return dis < 0 ? dis + 360 : dis;
 		}
 
-		float MathUtilities::CalculateAngularDistanceInRad(float startAngle, float endAngle) {
+		float MathUtilities::calculate_angular_distance_in_rad(float startAngle, float endAngle) {
 			float dis = endAngle - startAngle;
 			return dis < 0 ? dis + 2 * PI : dis;
 		}
 
-		bool MathUtilities::IsPowerOfTwo(int x) {
+		bool MathUtilities::is_power_of_two(int x) {
 			int bitCount = __popcnt(x);
 			return bitCount == 1;
 		}

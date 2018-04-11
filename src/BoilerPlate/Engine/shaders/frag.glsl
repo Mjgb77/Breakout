@@ -5,7 +5,7 @@ out vec4 color;
 
 uniform float time;
 
-in vec3 ourColor;
+in vec4 ourColor;
 in vec2 TexCoord;
 
 // texture sampler
@@ -14,5 +14,5 @@ uniform sampler2D texture2;
 
 void main()
 {
-	color = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.9);
+	color = texture(texture1, TexCoord) * ourColor;
 }

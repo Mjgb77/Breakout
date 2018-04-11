@@ -4,18 +4,18 @@ namespace Engine
 {
 	namespace core
 	{
-		Component::Component(const std::string& name)
+		component::component(const std::string& name)
 			: m_name(name)
 		{}
 
-		Component::~Component()
+		component::~component()
 		{
 			m_owner = nullptr;
 		}
 
-		void Component::Update(double deltaTime)
+		void component::update(double deltaTime)
 		{
-			IUpdate::Update(deltaTime);
+			IUpdate::update(deltaTime);
 		}
 	}
 }

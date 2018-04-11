@@ -8,44 +8,43 @@
 #include "IUpdate.hpp"
 #include "IRender.hpp"
 #include "unique_id.hpp"
+#include "Renderer.hpp"
 
 namespace Engine
 {
 	namespace core
 	{
-		class Component;
-		class GameObject : public IUpdate, public IRender, public unique_id
+		class component;
+		class game_object : public IUpdate, public IRender, public unique_id
 		{
 		public:
 			//constructor
-			GameObject();
-			~GameObject();
+			game_object();
+			~game_object();
 
-			
 			// PUBLIC FUNCTIONS
 			
-			void attach_component(Component*);
-			void remove_component(Component*);
-			void add_child(GameObject*);
-			void remove_child(GameObject*);
-			void Update(double deltaTime) override;
-			void Render() override;
-
+			void attach_component(component*);
+			void remove_component(component*);
+			void add_child(game_object*);
+			void remove_child(game_object*);
+			void update(double deltaTime) override;
+			void render() override;
 			
 			// GETTER FUNCTIONS
 		
-			std::vector<Component*>GetComponents() const { return m_components; }
-			std::vector<GameObject*> GetChildren() const { return m_children; }
-			GameObject* GetParent() const { return m_parent; }
+			std::vector<component*>get_components() const { return m_components; }
+			std::vector<game_object*> get_children() const { return m_children; }
+			game_object* GetParent() const { return m_parent; }
 
 			template<typename T>
-			T* GetComponent()
+			T* get_component()
 			{
 				// If no components have been attached then return nothing
 				//
 				if (m_components.size() == 0) return nullptr;
 
-				std::vector< Component* >::iterator comp = m_components.begin();
+				std::vector< component* >::iterator comp = m_components.begin();
 				for (; comp != m_components.end(); ++comp)
 				{
 					T* theComponent = dynamic_cast<T*>(*comp);
@@ -61,9 +60,14 @@ namespace Engine
 			
 			// MEMBERS
 			
-			std::vector<Component*>	m_components;
-			std::vector<GameObject*> m_children;
-			GameObject* m_parent;
+			std::vector<component*>	m_components;
+			std::vector<game_object*> m_children;
+			
+			game_object* m_parent;
+			renderer * m_renderer;
+
+			// FUNCTIONS
+			void init_quad_vertices(float *, Color);
 		};
 
 	}

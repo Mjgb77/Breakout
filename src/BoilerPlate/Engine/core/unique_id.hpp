@@ -8,10 +8,10 @@ namespace Engine {
 		public:
 			int id;
 
-
 			unique_id();
 			unique_id(const unique_id& orig);
 			unique_id& operator=(const unique_id& orig);
+		
 		protected:
 			static int nextID;
 

@@ -1,40 +1,30 @@
 #include "Renderer.hpp"
+#include "../math/matrix_4.hpp"
 
+#include <vector>
 
 const int FIRST_ATTRIBUTE_SLOT = 0;
 const int SECOND_ATTRIBUTE_SLOT = 1;
 const int THIRD_ATTRIBUTE_SLOT = 2;
-const int STRIDE=6;
+const int STRIDE = 6;
 
 
-Renderer::Renderer() {
-	wireFrame = false;
+renderer::renderer() {
 }
 
-Renderer::~Renderer() {
+renderer::~renderer() {
 	//glDeleteBuffers(1, &VertexBufferObject);
 	//glDeleteBuffers(1, &ElementBufferObject);
 	//glDeleteVertexArrays(1, &VertexArrayObject);
 
 }
 
-void Renderer::switch_view() {
-	if (wireFrame) wireFrame = false;
-	else {
-		wireFrame = true;
-	}
-}
+void renderer::init(float vertices[], int indices[]) {
 
+	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl", "Engine/shaders/frag.glsl");
 
-
-void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs) {
-	float *vertexes = new float[101 * 8];
-	for (int i = 0; i < 808; i++) vertexes[i] = vertexs[i];
-
-	int indexes[300];
-	for (int i = 0; i < 300; i++) indexes[i] = indexs[i];
-	
-	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl","Engine/shaders/frag.glsl");
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 
 	glGenVertexArrays(1, &VertexArrayObject);
 	glGenBuffers(1, &VertexBufferObject);
@@ -44,34 +34,34 @@ void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs
 	glBindVertexArray(VertexArrayObject);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexes), indexes, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(int), indices, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexes), vertexes, GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(float), vertices, GL_STATIC_DRAW);
+	//
 
 
 	////ATTRIBUTES ARE 3: POSITION , COLOR, COORDINATES
-	glVertexAttribPointer(
-		FIRST_ATTRIBUTE_SLOT,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-	3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		STRIDE * sizeof(float),  // stride
-		(void*)0            // array buffer offset
-	);
-	
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	//glVertexAttribPointer(
+	//	FIRST_ATTRIBUTE_SLOT,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+	//	3,                  // size
+	//	GL_FLOAT,           // type
+	//	GL_FALSE,           // normalized?
+	//	STRIDE * sizeof(float),  // stride
+	//	(void*)0            // array buffer offset
+	//);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
 	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(7 * sizeof(float)));
 	glEnableVertexAttribArray(2);
-	
+
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -79,29 +69,37 @@ void Renderer::init_vertex(std::vector <float> vertexs, std::vector <int> indexs
 
 	glUseProgram(ProgramID);
 	glUniform1i(glGetUniformLocation(ProgramID, "texture1"), 0);
-	
-	//float resolution[] = { static_cast<float>(2), static_cast<float>(2) };
-	//glUniform2fv(glGetUniformLocation(ProgramID, "resolution"), 1, resolution);
-	
 }
 
-void Renderer::on_render(std::vector <int> indexs) {
+using namespace std;
+void renderer::render(int indices[], float pModelMatrix [], int pIdTexture, float pAspectRatio)  {
 
-	int *indexes = new int[300];
-	for (int i = 0; i < 300; i++) indexes[i] = indexs[i];
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	if (!wireFrame)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else if (wireFrame) {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	
 
 	glUseProgram(ProgramID);
+
+	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
+	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
+
+	//view.translate({ 0.0f,0.0f,-2.0f });
+	//projection.make_perspective(120.0f, 0.1f, 120.0f, pAspectRatio);
+
+	//retrieve the matrix uniform locations
+	GLuint modelLoc = glGetUniformLocation(ProgramID, "model");
+	GLuint viewLoc = glGetUniformLocation(ProgramID, "view");
+	GLuint projectionLoc = glGetUniformLocation(ProgramID, "projection");
+
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, pModelMatrix);
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.get_pointer());
+	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, projection.get_pointer());
+
+
 	glBindVertexArray(VertexArrayObject);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, mTextureBall);
-	
+	glBindTexture(GL_TEXTURE_2D, pIdTexture);
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
-	glDrawElements(GL_TRIANGLES,sizeof(indexes), GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(GL_TRIANGLES, 6 * sizeof(int), GL_UNSIGNED_INT, (void*)0);
 }
