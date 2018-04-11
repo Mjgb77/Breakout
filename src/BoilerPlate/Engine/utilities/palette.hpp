@@ -8,13 +8,14 @@ class Palette
 public:
 	Palette();
 
-	static const Color Amber;
-	static const Color Cyan;
-	static const Color DarkNight;
-	static const Color Flame;
-	static const Color Green;
-	static const Color Red;
-	static const Color White;
+	static const Color AMBER;
+	static const Color CYAN;
+	static const Color DARK_NIGHT;
+	static const Color FLAME;
+	static const Color GREEN;
+	static const Color PURPLE;
+	static const Color RED;
+	static const Color WHITE;
 
 };
 

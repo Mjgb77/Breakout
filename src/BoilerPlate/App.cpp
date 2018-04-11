@@ -27,6 +27,7 @@ namespace Engine
 		, m_nUpdates(0)
 		, m_timer(new TimeManager)
 		, m_mainWindow(nullptr)
+		, GameBreakout(width, height)
 	{
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
@@ -122,12 +123,9 @@ namespace Engine
 
 	void App::Update()
 	{
-		double startTime = m_timer->GetElapsedTimeInSeconds();
-
-		// Update code goes here
-		//
-
+		double startTime = m_lastFrameTime;
 		double endTime = m_timer->GetElapsedTimeInSeconds();
+
 		double nextTimeFrame = startTime + DESIRED_FRAME_TIME;
 
 		while (endTime < nextTimeFrame)
@@ -136,11 +134,13 @@ namespace Engine
 			endTime = m_timer->GetElapsedTimeInSeconds();
 		}
 
-		//double elapsedTime = endTime - startTime;        
+		double elapsedTime = endTime - startTime;
+
+		GameBreakout->update(elapsedTime);
 
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
-
 		m_nUpdates++;
+
 	}
 
 	void App::Render()

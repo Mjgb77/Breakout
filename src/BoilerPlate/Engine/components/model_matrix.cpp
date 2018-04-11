@@ -1,6 +1,6 @@
 #include "model_matrix.hpp"
 
-model_matrix::model_matrix():Component("Model_Matrix")
+model_matrix::model_matrix():component("Model_Matrix")
 {
 
 }
@@ -20,6 +20,10 @@ void model_matrix::translate(Engine::Math::Vector3 pTranslationVector)
 	mMatrix.translate(pTranslationVector);
 }
 
+Engine::Math::Vector3 model_matrix::transformPoint (Engine::Math::Vector3 pPoint)
+{
+	return mMatrix.transform(pPoint);
+}
 
 model_matrix::~model_matrix()
 {

@@ -35,7 +35,7 @@ namespace Engine {
 			void rotate_z(float pAngle);
 
 			matrix_4 make_ortho(float pMaximumX, float pMinimumX, float pMaximumY, float pMinimumY, float pMaximumZ, float pMinimumZ);
-			matrix_4 make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView);
+			matrix_4 make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView, float pAspectRatio);
 			matrix_4 make_look_at(Vector3 pCurrentLook, Vector3 pNewLook);
 
 			void scale(Vector3 pScaleVector);

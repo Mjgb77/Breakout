@@ -9,14 +9,11 @@
 #include "vertex_object.hpp"
 
 
-struct Renderer {
+struct renderer {
 	//members
-	//ESTAS 3 cosas se sobre escriben cuando se llama init vertex!
 	GLuint VertexArrayObject; //VAO
 	GLuint VertexBufferObject; //VBO
 	GLuint ElementBufferObject; //EBO
-	// osea creo q no deberia  de ir en esta clase si no ball deberia de guardar esa info
-	//o otra clase no se
 
 	GLuint mTextureBall;
 	GLuint mTextureBlock;
@@ -24,10 +21,10 @@ struct Renderer {
 
 
 	//functions 
-	void init_vertex(float [], int []);
-	void on_render(int [], float [], int);
-	Renderer();
-	~Renderer();
+	void init(float [], int []);
+	void render(int [], float [], int, float);
+	renderer();
+	~renderer();
 };
 
 

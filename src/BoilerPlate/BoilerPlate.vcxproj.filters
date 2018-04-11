@@ -14,18 +14,23 @@
     <ClCompile Include="Engine\core\unique_id.cpp" />
     <ClCompile Include="Engine\utilities\input_manager.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Engine\utilities\resource_manager.cpp" />
     <ClCompile Include="Engine\utilities\shader_utilities.cpp" />
     <ClCompile Include="Engine\utilities\error_manager.cpp" />
     <ClCompile Include="Engine\core\Renderer.cpp" />
-    <ClCompile Include="block.cpp" />
     <ClCompile Include="Engine\utilities\color.cpp" />
     <ClCompile Include="Engine\core\vertex_object.cpp" />
     <ClCompile Include="Engine\utilities\palette.cpp" />
     <ClCompile Include="Engine\math\matrix_4.cpp" />
     <ClCompile Include="Engine\components\velocity.cpp" />
     <ClCompile Include="Engine\components\model_matrix.cpp" />
-    <ClCompile Include="ball.cpp" />
+    <ClCompile Include="Game\objects\block.cpp" />
+    <ClCompile Include="Game\objects\ball.cpp" />
+    <ClCompile Include="Engine\utilities\texture_manager.cpp" />
+    <ClCompile Include="Game\objects\scene.cpp" />
+    <ClCompile Include="Game\objects\paddle.cpp" />
+    <ClCompile Include="game_level.cpp" />
+    <ClCompile Include="Engine\components\collision_component.cpp" />
+    <ClCompile Include="Game\objects\background.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -43,18 +48,23 @@
     <ClInclude Include="Engine\utilities\stb_image.h" />
     <ClInclude Include="Engine\utilities\input_manager.hpp" />
     <ClInclude Include="Game.hpp" />
-    <ClInclude Include="Engine\utilities\resource_manager.hpp" />
     <ClInclude Include="Engine\utilities\shader_utilities.hpp" />
     <ClInclude Include="Engine\utilities\error_manager.hpp" />
     <ClInclude Include="Engine\core\Renderer.hpp" />
-    <ClInclude Include="block.hpp" />
     <ClInclude Include="Engine\utilities\color.hpp" />
     <ClInclude Include="Engine\core\vertex_object.hpp" />
     <ClInclude Include="Engine\utilities\palette.hpp" />
     <ClInclude Include="Engine\math\matrix_4.hpp" />
     <ClInclude Include="Engine\components\velocity.hpp" />
     <ClInclude Include="Engine\components\model_matrix.hpp" />
-    <ClInclude Include="ball.hpp" />
+    <ClInclude Include="Game\objects\block.hpp" />
+    <ClInclude Include="Game\objects\ball.hpp" />
+    <ClInclude Include="Engine\utilities\texture_manager.hpp" />
+    <ClInclude Include="Game\objects\scene.hpp" />
+    <ClInclude Include="Game\objects\paddle.hpp" />
+    <ClInclude Include="game_level.hpp" />
+    <ClInclude Include="Engine\components\collision_component.hpp" />
+    <ClInclude Include="Game\objects\background.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -77,5 +87,11 @@
     <Image Include="Game\assets\pelota.png" />
     <Image Include="Game\assets\block.png" />
     <Image Include="Game\assets\ball.png" />
+    <Image Include="Game\assets\background.jpg" />
+    <Image Include="Game\assets\paddle.png" />
+    <Image Include="Game\assets\block_solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt" />
   </ItemGroup>
 </Project>

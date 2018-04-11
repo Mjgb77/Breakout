@@ -1,28 +1,38 @@
 #pragma once
-#ifndef GAME_H_INCLUDED
-#define GAME_H_INCLUDED
+#ifndef GAME_HPP_
+#define GAME_HPP_
 
 #include <vector>
 #include "Engine/core/Renderer.hpp"
-#include "block.hpp"
-#include "ball.hpp"
-#include "Engine/utilities/resource_manager.hpp"
+#include "Game/objects/ball.hpp"
+#include "Game/objects/background.hpp"
+
+#include "Game/objects/block.hpp"
+#include "Game/objects/paddle.hpp"
+
+#include "Engine/utilities/texture_manager.hpp"
 
 class Game {
 
-	TextureManager mGameTextures;
+	TextureManager * mGameTextures;
 
 public:
-	Renderer mGameRender;
-	Renderer mrBall;
-	std::vector <Block> mGameBlocks;
-	ball mBall;
+	std::vector <block *> mGameBlocks;
+	ball * mBall;
+	background * mBackground;
+	paddle * mPaddle;
 	//FUNCTIONS &  CTORS
-	Game();
+	Game(int width, int height);
+
 	void Game_init();
 	void render();
+	void update();
+
+	void update_size(int, int);
+
+	int mWidth, mHeight;
 };
 
 
-#endif // !GAME_H_INCLUDED
+#endif // !GAME_HPP_
 

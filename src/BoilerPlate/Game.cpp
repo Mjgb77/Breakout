@@ -1,20 +1,40 @@
 #include "game.hpp"
+#include "game_level.hpp"
 
-Game::Game() : mBall(ball(0.0f)) {
-	mGameBlocks.push_back(Block(0.5f));
+Game::Game(int pWidth, int pHeight)
+{
+	game_level bla;
+	mGameBlocks = bla.get_blocks("1.txt", pWidth, pHeight);
+	mBall = new ball(0.0f);
+	mBackground = new background({ 0.0f,0.0f,-1.0f });
+	mPaddle = new paddle({ 0.0f,-0.9f }, 0.1f, 0.05f);
 }
 
-	//SE LLAMA UNA SOLA VEZ
-void Game::Game_init() {
-	mrBall.mTextureBall = mGameTextures.load_texture("Game/assets/ball.png", true);
-	mrBall.init_vertex(ball::get_vertices(), ball::get_indices());
-	
-	mGameRender.mTextureBlock = mGameTextures.load_texture("Game/assets/block.png", false);
-	mGameRender.init_vertex(Block::get_vertices(), Block::get_indices());
+void Game::Game_init()
+{
+	(*mBall).init(mGameTextures);
+	(*mBackground).init(mGameTextures);
+	(*mPaddle).init(mGameTextures);
+
+	for (block *mb : mGameBlocks) 
+	{
+		(*mb).init(mGameTextures);
+	}
 }
 
-	//SE LLAMA 60 veces por segundo
-void Game::render () {
-	mrBall.on_render(ball::get_indices(), mBall.mModelMatrix.get_pointer_table(),1);
-	mGameRender.on_render(Block::get_indices(), mGameBlocks[0].mModelMatrix.get_pointer_table(),2);
+
+void Game::update_size(int pWidth, int pHeight)
+{
+	mWidth = pWidth;
+	mHeight = pHeight;
+}
+
+void Game::render ()
+{
+	(*mBackground).render();
+	(*mScene).render();
+}
+
+void Game::update() {
+
 }

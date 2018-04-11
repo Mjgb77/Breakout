@@ -9,19 +9,17 @@ const int THIRD_ATTRIBUTE_SLOT = 2;
 const int STRIDE = 6;
 
 
-Renderer::Renderer() {
+renderer::renderer() {
 }
 
-Renderer::~Renderer() {
+renderer::~renderer() {
 	//glDeleteBuffers(1, &VertexBufferObject);
 	//glDeleteBuffers(1, &ElementBufferObject);
 	//glDeleteVertexArrays(1, &VertexArrayObject);
 
 }
 
-
-
-void Renderer::init_vertex(float vertices[], int indices[]) {
+void renderer::init(float vertices[], int indices[]) {
 
 	ProgramID = ShaderUtilities::load_shaders("Engine/shaders/vertex.glsl", "Engine/shaders/frag.glsl");
 
@@ -74,7 +72,7 @@ void Renderer::init_vertex(float vertices[], int indices[]) {
 }
 
 using namespace std;
-void Renderer::on_render(int indices[], float pModelMatrix [], int pIdTexture)  {
+void renderer::render(int indices[], float pModelMatrix [], int pIdTexture, float pAspectRatio)  {
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -84,9 +82,8 @@ void Renderer::on_render(int indices[], float pModelMatrix [], int pIdTexture)  
 	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
 
-	view.translate({ 0.0f,0.0f,-7.0f });
-	//view.rotate_z(0.0f);
-	projection.make_perspective(120.0f, 0.1f, 30.0f);
+	view.translate({ 0.0f,0.0f,-2.0f });
+	projection.make_perspective(120.0f, 0.1f, 120.0f, pAspectRatio);
 
 	//retrieve the matrix uniform locations
 	GLuint modelLoc = glGetUniformLocation(ProgramID, "model");
