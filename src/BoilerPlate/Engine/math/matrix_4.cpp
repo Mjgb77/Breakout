@@ -362,7 +362,7 @@ namespace Engine {
 
 		// pAspectRation = width / height
 		matrix_4 matrix_4::make_perspective(float pMaximumZ, float pMinimumZ, float pSizeOfView, float pAspectRatio) {
-			float  factor = 1 / (tan( MathUtilities::to_rad(pSizeOfView * 0.5)));
+			float  factor = 1 / (tan( MathUtilities::to_rad(pSizeOfView * 0.5f)));
 			float zDiffFactor = 1 / (pMaximumZ - pMinimumZ);
 			MATRIX[0] = factor * pAspectRatio;
 			MATRIX[5] = factor;

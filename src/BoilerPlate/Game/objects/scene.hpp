@@ -15,11 +15,13 @@
 #include "../../Engine/utilities/texture_manager.hpp"
 #include "../../Engine/components/collision_component.hpp"
 
+
+
+class Game;
 class scene : public Engine::core::game_object
 {
 public:
-
-	scene(int, int);
+	scene(int, int, Game *);
 
 	void init(TextureManager *);
 
@@ -27,7 +29,6 @@ public:
 	void check_collisions_with_blocks();
 	void update(double );
 	int mWidth, mHeight;
-	
 
 
 	~scene();
@@ -39,7 +40,11 @@ public:
 	collision_component mCollision;
 	game_level mLevel;
 
+	Game * mGame;
+
 	int mIdLevel;
+
+	bool mIsSticked;
 };
 
 #endif // !SCENE_HPP_

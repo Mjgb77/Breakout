@@ -11,14 +11,22 @@
 #include "Engine/utilities/texture_manager.hpp"
 #include "Engine/utilities/input_manager.hpp"
 
+#include "Engine/utilities/Sound.hpp"
+#include "Engine/utilities/SoundPlayer.hpp"
+
 class Game {
 
 	TextureManager * mGameTextures;
-	//Engine::Input::InputManager mInputManager;
 
 public:
 	background * mBackground;
 	scene * mScene;
+
+
+	Sound * mCollision;
+	Sound * mInitSound;
+
+	SoundPlayer * m_soundPlayer;
 
 	//FUNCTIONS &  CTORS
 	Game(int width, int height);
@@ -30,8 +38,13 @@ public:
 	void update(double);
 
 	void update_size(int, int);
+	
+	void play_collision_sound();
 
 	int mWidth, mHeight;
+
+private:
+	void initialize_sounds();
 };
 
 

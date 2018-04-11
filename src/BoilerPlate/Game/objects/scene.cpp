@@ -3,21 +3,24 @@
 #include "../../Engine/utilities/input_manager.hpp"
 
 #include <string>
+#include "../../Game.hpp"
 
-scene::scene(int pWidth, int pHeight)
+scene::scene(int pWidth, int pHeight, Game * pGame)
 {
 	mIdLevel = 1;
 	std::string filePath = "Game/assets/levels/level";
-	filePath += mIdLevel + '2';
+	filePath += mIdLevel + '0';
 	filePath += ".txt";
 	mGameBlocks = mLevel.get_blocks(filePath.c_str(), pWidth, pHeight);
-	mBall = new ball({ 0.0f,-0.8f });
 	mPaddle = new paddle({ 0.0f,-0.9f }, 0.1f, 0.05f);
-
+	mBall = new ball({ 0.0f,-0.8f }, mPaddle);
+	mGame = pGame;
 	add_child(mBall);
 	add_child(mPaddle);
 
+	mIsSticked = true;
 	for (block * b : mGameBlocks) add_child(b);
+
 }
 
 void scene::init(TextureManager * pGameTextures)
@@ -72,6 +75,14 @@ void scene::update(double pDeltaTime)
 	
 	if (Engine::Input::InputManager::Instance().is_key_pressed(79)) mPaddle->go_right();
 	if (Engine::Input::InputManager::Instance().is_key_released(79)) mPaddle->stop_right();
+
+	if (mIsSticked) {
+		if (Engine::Input::InputManager::Instance().is_key_pressed(82)) mBall->mVelocity->sum_velocity(Engine::Math::Vector2(0.0f, 40.0f));
+	}
+
+	if (mBall->get_model_matrix().transformPoint(Engine::Math::Vector2(0.0f)).y < -1.0f) {
+		
+	}
 
 	game_object::update(pDeltaTime);
 }

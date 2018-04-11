@@ -31,6 +31,8 @@
     <ClCompile Include="game_level.cpp" />
     <ClCompile Include="Engine\components\collision_component.cpp" />
     <ClCompile Include="Game\objects\background.cpp" />
+    <ClCompile Include="Engine\utilities\Sound.cpp" />
+    <ClCompile Include="Engine\utilities\SoundPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.hpp" />
@@ -65,6 +67,8 @@
     <ClInclude Include="game_level.hpp" />
     <ClInclude Include="Engine\components\collision_component.hpp" />
     <ClInclude Include="Game\objects\background.hpp" />
+    <ClInclude Include="Engine\utilities\Sound.hpp" />
+    <ClInclude Include="Engine\utilities\SoundPlayer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -96,5 +100,9 @@
     <Text Include="Game\assets\levels\level1.txt" />
     <Text Include="Game\assets\levels\level2.txt" />
     <Text Include="Game\assets\levels\level3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Game\assets\sounds\collision.wav" />
+    <Media Include="Game\assets\sounds\init.wav" />
   </ItemGroup>
 </Project>

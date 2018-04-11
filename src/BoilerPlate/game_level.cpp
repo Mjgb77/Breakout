@@ -45,7 +45,6 @@ std::vector<block*> game_level::get_blocks(const char * pLevelPath, int pLevelWi
 			else blocks.push_back(new block({ sx,sy }, dx/2, dy/2, block_type::COLORFUL, BlockColors[blockType-1]));
 		}
 
-		puts(" ");
 
 	}
 

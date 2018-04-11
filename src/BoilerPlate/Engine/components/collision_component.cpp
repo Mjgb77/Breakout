@@ -7,9 +7,6 @@ collision_component::collision_component():component("collision")
 
 }
 
-#include <iostream>
-
-using namespace std;
 
 
 int collision_component::check_collision (model_matrix pCircleMatrix, model_matrix pAABBMatrix)

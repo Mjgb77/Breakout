@@ -99,7 +99,6 @@ namespace Engine
 
 	void App::OnKeyDown(SDL_KeyboardEvent keyBoardEvent)
 	{
-			std::cout << int(keyBoardEvent.keysym.scancode) << std::endl;
 		on_keyboard_down_event(keyBoardEvent.keysym.scancode);
 	}
 

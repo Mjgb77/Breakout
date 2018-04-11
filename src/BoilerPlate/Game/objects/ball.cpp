@@ -8,13 +8,13 @@ const float RADIUS = 0.02f;
 #include <iostream>
 using namespace std;
 
-ball::ball(Engine::Math::Vector2 pPosition) 
+ball::ball(Engine::Math::Vector2 pPosition, paddle * pPaddle) 
 {
 	m_renderer = new renderer();
 	mModelMatrix.translate(pPosition);
 	mModelMatrix.scale(Engine::Math::Vector2(RADIUS));
-
-	mVelocity = new velocity(Engine::Math::Vector2(0.0f, 40.0f));
+	mPaddle = pPaddle;
+	mVelocity = new velocity(Engine::Math::Vector2(0.0f, 0.0f));
 }
 
 void ball::init(TextureManager * textureManager)
@@ -31,7 +31,7 @@ model_matrix ball::get_model_matrix()
 }
 
 void ball::update(double deltaTime) {
-	Engine::Math::Vector2 movement = mVelocity->get_velocity()*deltaTime;
+	Engine::Math::Vector2 movement = mVelocity->get_velocity()*static_cast<float>(deltaTime);
 	mModelMatrix.translate(movement);
 
 	float xPos = mModelMatrix.transformPoint(0.0f).x;
