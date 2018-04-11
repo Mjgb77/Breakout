@@ -27,8 +27,8 @@ namespace Engine
 		, m_nUpdates(0)
 		, m_timer(new TimeManager)
 		, m_mainWindow(nullptr)
-		, GameBreakout(width, height)
 	{
+		GameBreakout = new Game(width, height);
 		m_state = GameState::UNINITIALIZED;
 		m_lastFrameTime = m_timer->GetElapsedTimeInSeconds();
 	}
@@ -46,7 +46,7 @@ namespace Engine
 			return;
 		}
 		
-		GameBreakout.Game_init();
+		GameBreakout->Game_init();
 
 		//glUniform1i(glGetUniformLocation(m_glRender.ProgramID, "texture1"), 0);
 
@@ -70,6 +70,8 @@ namespace Engine
 			//
 			Update();
 			Render();
+
+			KeyboardPollEvent();
 		}
 	}
 
@@ -96,27 +98,21 @@ namespace Engine
 	}
 
 	void App::OnKeyDown(SDL_KeyboardEvent keyBoardEvent)
-	{		
-		switch (keyBoardEvent.keysym.scancode)
-		{
-		default:			
-			SDL_Log("%S was pressed.", keyBoardEvent.keysym.scancode);
-			break;
-		}
+	{
+			std::cout << int(keyBoardEvent.keysym.scancode) << std::endl;
+		on_keyboard_down_event(keyBoardEvent.keysym.scancode);
 	}
+
 
 	void App::OnKeyUp(SDL_KeyboardEvent keyBoardEvent)
 	{
 		switch (keyBoardEvent.keysym.scancode)
 		{
-		case SDL_SCANCODE_D:
-			break;
-
 		case SDL_SCANCODE_ESCAPE:
 			OnExit();
 			break;
 		default:
-			//DO NOTHING
+			on_keyboard_release_event(keyBoardEvent.keysym.scancode);
 			break;
 		}
 	}
@@ -148,7 +144,7 @@ namespace Engine
 		glClearColor(0.1f, 0.1f, 0.15f, 0.1f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-		GameBreakout.render();
+		GameBreakout->render();
 
 		/*glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, m_glRender.mTextureBall);

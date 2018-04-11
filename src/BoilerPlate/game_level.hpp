@@ -16,7 +16,10 @@ public:
 	game_level();
 	~game_level();
 
-	std::vector <block *> get_blocks(char *, int, int);
+	std::vector <block *> get_blocks(const char *, int, int);
+
+private:
+	int mLifes;
 };
 
 #endif // !GAME_LEVEL_HPP_

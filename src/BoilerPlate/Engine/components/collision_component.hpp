@@ -15,7 +15,9 @@ class collision_component : Engine::core::component
 public:
 	collision_component();
 
-	bool check_collision(model_matrix, model_matrix);
+	int check_collision(model_matrix, model_matrix);
+
+	Engine::Math::Vector2 vector_from_center(model_matrix, model_matrix);
 
 	~collision_component();
 };

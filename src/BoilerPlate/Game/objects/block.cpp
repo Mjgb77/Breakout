@@ -7,10 +7,11 @@
 #include <iostream>
 using namespace std;
 
-block::block(Engine::Math::Vector2 pPosition, float pWidth, float pHeight, Color pColor)
+block::block(Engine::Math::Vector2 pPosition, float pWidth, float pHeight, block_type pType, Color pColor) 
 {
 	m_renderer = new renderer();
 	mColor = pColor;
+	mType = pType;
 	mModelMatrix.translate(pPosition);
 	mModelMatrix.scale(Engine::Math::Vector2(pWidth, pHeight));
 }
@@ -19,9 +20,15 @@ void block::init(TextureManager * textureManager)
 {
 	float * vertices = new float[36];
 	init_quad_vertices(vertices, mColor);
-	mTextureId = textureManager->load_texture(TEXTURE_PATH, false);
+	mTextureId = textureManager->load_texture((mType == SOLID ? TEXTURE_PATH_SOLID : TEXTURE_PATH_COLORFUL), false);
 	m_renderer->init(vertices, get_indices());
 }
+
+model_matrix block::get_model_matrix()
+{
+	return mModelMatrix;
+}
+
 
 void block::render()
 {

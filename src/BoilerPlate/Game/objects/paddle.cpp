@@ -12,6 +12,12 @@ paddle::paddle(Engine::Math::Vector2 pPosition, float pWidth, float pHeight)
 	m_renderer = new renderer();
 	mModelMatrix.translate(pPosition);
 	mModelMatrix.scale(Engine::Math::Vector2(pWidth, pHeight));
+	mVelocity = new velocity();
+}
+
+model_matrix paddle::get_model_matrix()
+{
+	return mModelMatrix;
 }
 
 
@@ -21,6 +27,34 @@ void paddle::init(TextureManager * textureManager)
 	init_quad_vertices(vertices, Palette::WHITE);
 	mTextureId = textureManager->load_texture(TEXTURE_PATH, true);
 	m_renderer->init(vertices, get_indices());
+}
+
+void paddle::go_left()
+{
+	mVelocity->sum_velocity(Engine::Math::Vector2(-10.0f, 0.0f));
+}
+
+void paddle::go_right()
+{
+	mVelocity->sum_velocity(Engine::Math::Vector2(10.0f, 0.0f));
+}
+
+void paddle::stop_left() {
+	go_right();
+}
+
+void paddle::stop_right() {
+	go_left();
+}
+
+void paddle::update(double pDeltaTime) {
+	Engine::Math::Vector2 movement = mVelocity->get_velocity()*pDeltaTime;
+
+	mModelMatrix.translate(movement);
+	float xPos = mModelMatrix.transformPoint(0.0f).x;
+
+	if (xPos <= -1.0f || xPos >= 1.0f) mModelMatrix.translate(movement*-1.0f);
+
 }
 
 void paddle::render()

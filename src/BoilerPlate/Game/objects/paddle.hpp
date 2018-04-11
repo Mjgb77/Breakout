@@ -15,14 +15,26 @@ class paddle : public Engine::core::game_object {
 	const char * TEXTURE_PATH = "Game/assets/paddle.png";
 public:
 	paddle(Engine::Math::Vector2, float, float);
+	model_matrix get_model_matrix();
 	void init(TextureManager *);
+
+	void go_left();
+	void go_right();
+
+	void stop_right();
+	void stop_left();
+
+	void update(double);
 	void render();
+
+
 private:
 	int mTextureId;
 	renderer * m_renderer;
 	model_matrix mModelMatrix;
+
+	velocity * mVelocity;
 	static int * get_indices();
-	static float * get_vertices();
 };
 
 #endif // !PADDLE_HPP_

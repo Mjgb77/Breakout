@@ -82,8 +82,8 @@ void renderer::render(int indices[], float pModelMatrix [], int pIdTexture, floa
 	Engine::Math::matrix_4 view = Engine::Math::matrix_4();
 	Engine::Math::matrix_4 projection = Engine::Math::matrix_4();
 
-	view.translate({ 0.0f,0.0f,-2.0f });
-	projection.make_perspective(120.0f, 0.1f, 120.0f, pAspectRatio);
+	//view.translate({ 0.0f,0.0f,-2.0f });
+	//projection.make_perspective(120.0f, 0.1f, 120.0f, pAspectRatio);
 
 	//retrieve the matrix uniform locations
 	GLuint modelLoc = glGetUniformLocation(ProgramID, "model");

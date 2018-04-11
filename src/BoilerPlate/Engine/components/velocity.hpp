@@ -9,8 +9,14 @@ class velocity : public Engine::core::component
 {
 public:
 	velocity();
+	velocity(Engine::Math::Vector2);
 
 	Engine::Math::Vector2 get_velocity ();
+
+	void reverse_x_direction();
+	void reverse_y_direction();
+
+	void sum_velocity(Engine::Math::Vector2);
 
 	~velocity();
 

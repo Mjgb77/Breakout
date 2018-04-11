@@ -9,28 +9,37 @@
 #include "background.hpp"
 #include "block.hpp"
 #include "paddle.hpp"
+#include "../../game_level.hpp"
+
 #include "../../Engine/core/game_object.hpp"
 #include "../../Engine/utilities/texture_manager.hpp"
+#include "../../Engine/components/collision_component.hpp"
 
 class scene : public Engine::core::game_object
 {
-	TextureManager * mGameTexture;
 public:
 
 	scene(int, int);
 
-	void init();
-	void render();
-	void update();
+	void init(TextureManager *);
 
+	void check_collision_with_paddle();
+	void check_collisions_with_blocks();
+	void update(double );
 	int mWidth, mHeight;
+	
+
 
 	~scene();
 
 	std::vector <block *> mGameBlocks;
+
 	ball * mBall;
-	background * mBackground;
 	paddle * mPaddle;
+	collision_component mCollision;
+	game_level mLevel;
+
+	int mIdLevel;
 };
 
 #endif // !SCENE_HPP_

@@ -13,6 +13,8 @@ ball::ball(Engine::Math::Vector2 pPosition)
 	m_renderer = new renderer();
 	mModelMatrix.translate(pPosition);
 	mModelMatrix.scale(Engine::Math::Vector2(RADIUS));
+
+	mVelocity = new velocity(Engine::Math::Vector2(0.0f, 40.0f));
 }
 
 void ball::init(TextureManager * textureManager)
@@ -23,10 +25,21 @@ void ball::init(TextureManager * textureManager)
 	m_renderer->init(vertices, get_indices());
 }
 
+model_matrix ball::get_model_matrix()
+{
+	return mModelMatrix;
+}
+
 void ball::update(double deltaTime) {
 	Engine::Math::Vector2 movement = mVelocity->get_velocity()*deltaTime;
 	mModelMatrix.translate(movement);
-	printf("%0.5f\n", deltaTime);
+
+	float xPos = mModelMatrix.transformPoint(0.0f).x;
+	float yPos = mModelMatrix.transformPoint(0.0f).y;
+
+	if (xPos < -1.0f || xPos > 1.0f) mVelocity->reverse_x_direction();
+	if (yPos > 1.0f) mVelocity->reverse_y_direction();
+	
 }
 
 void ball::render() 

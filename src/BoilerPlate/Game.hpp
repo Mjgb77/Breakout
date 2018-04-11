@@ -9,10 +9,12 @@
 #include "Game/objects/scene.hpp"
 
 #include "Engine/utilities/texture_manager.hpp"
+#include "Engine/utilities/input_manager.hpp"
 
 class Game {
 
 	TextureManager * mGameTextures;
+	//Engine::Input::InputManager mInputManager;
 
 public:
 	background * mBackground;
@@ -25,7 +27,7 @@ public:
 
 
 	void render();
-	void update();
+	void update(double);
 
 	void update_size(int, int);
 

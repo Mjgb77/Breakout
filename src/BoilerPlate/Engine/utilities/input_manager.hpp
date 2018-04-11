@@ -68,8 +68,8 @@ namespace Engine
 /* =============================================================
 * EXTERNS
 * ============================================================= */
-extern void OnKeyboardDownEvent(unsigned char key);
-extern void OnKeyboardReleasedEvent(unsigned char key);
+extern void on_keyboard_down_event(unsigned char key);
+extern void on_keyboard_release_event(unsigned char key);
 extern void KeyboardPollEvent();
 
 #endif
