@@ -81,7 +81,7 @@ namespace Engine
 			IUpdate::update(deltaTime);
 		}
 
-		void game_object::Render()
+		void game_object::render()
 		{
 			//if ((m_nUpdates % 60) == 0)
 			{
@@ -90,7 +90,7 @@ namespace Engine
 				std::vector< game_object* >::iterator child = m_children.begin();
 				for (; child != m_children.end(); ++child)
 				{
-					(*child)->Render();
+					(*child)->render();
 				}
 			}
 		}

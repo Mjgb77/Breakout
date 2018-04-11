@@ -10,7 +10,7 @@ namespace Engine
 		public:
 			virtual ~IRender() = default;
 			
-			void virtual Render() = 0;
+			void virtual render() = 0;
 
 
 		};

@@ -11,7 +11,7 @@
 #include "../../Engine/core/Renderer.hpp"
 #include "../../Engine/utilities/texture_manager.hpp"
 
-class background : Engine::core::game_object {
+class background : public Engine::core::game_object {
 	const char * TEXTURE_PATH = "Game/assets/background.jpg";
 public:
 	background(Engine::Math::Vector3);

@@ -29,7 +29,7 @@ namespace Engine
 			void add_child(game_object*);
 			void remove_child(game_object*);
 			void update(double deltaTime) override;
-			void Render() override;
+			void render() override;
 			
 			// GETTER FUNCTIONS
 		

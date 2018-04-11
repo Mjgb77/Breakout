@@ -4,11 +4,9 @@
 
 #include <vector>
 #include "Engine/core/Renderer.hpp"
-#include "Game/objects/ball.hpp"
-#include "Game/objects/background.hpp"
 
-#include "Game/objects/block.hpp"
-#include "Game/objects/paddle.hpp"
+#include "Game/objects/background.hpp"
+#include "Game/objects/scene.hpp"
 
 #include "Engine/utilities/texture_manager.hpp"
 
@@ -17,14 +15,15 @@ class Game {
 	TextureManager * mGameTextures;
 
 public:
-	std::vector <block *> mGameBlocks;
-	ball * mBall;
 	background * mBackground;
-	paddle * mPaddle;
+	scene * mScene;
+
 	//FUNCTIONS &  CTORS
 	Game(int width, int height);
 
 	void Game_init();
+
+
 	void render();
 	void update();
 

@@ -18,6 +18,13 @@ class scene : public Engine::core::game_object
 public:
 
 	scene(int, int);
+
+	void init();
+	void render();
+	void update();
+
+	int mWidth, mHeight;
+
 	~scene();
 
 	std::vector <block *> mGameBlocks;
